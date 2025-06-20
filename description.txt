@@ -1,0 +1,3 @@
+Currently a WIP for tModJam No. 0
+
+Mod does lots of stuff related to fishing. This is a placeholder to allow publishing for the timebeing.
