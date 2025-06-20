@@ -6,7 +6,7 @@ namespace Ichthyology.Systems
     [ReinitializeDuringResizeArrays]
     public static class FishIDSets
     {
-        public static bool[] SpaceSC = NPCID.Sets.Factory.CreateNamedSet("Space Sea Creatures").Description("Enemies in this set can be caught when fishing in the Space Biome.").RegisterBoolSet(false,
+        public static bool[] SpaceSC = NPCID.Sets.Factory.CreateNamedSet("SpaceSeaCreatures").Description("Enemies in this set can be caught when fishing in the Space Biome.").RegisterBoolSet(false,
             NPCID.WyvernHead,
             NPCID.WyvernBody,
             NPCID.WyvernBody2,
@@ -17,7 +17,7 @@ namespace Ichthyology.Systems
             //Custom Enemy goes here
             );
 
-        public static bool[] ForestSC = NPCID.Sets.Factory.CreateNamedSet("Forest Sea Creatures").Description("Enemies in this set can be caught when fishing in the Forest Biome").RegisterBoolSet(false,
+        public static bool[] ForestSC = NPCID.Sets.Factory.CreateNamedSet("ForestSeaCreatures").Description("Enemies in this set can be caught when fishing in the Forest Biome").RegisterBoolSet(false,
             NPCID.Zombie,
             NPCID.DemonEye,
             NPCID.GreenSlime,
@@ -28,7 +28,7 @@ namespace Ichthyology.Systems
             //Custom Enemy goes here
             );
 
-        public static bool[] UndergroundSC = NPCID.Sets.Factory.CreateNamedSet("Underground Sea Creatures").Description("Enemies in this set can be caught when fishing in the Underground Biome").RegisterBoolSet(false,
+        public static bool[] UndergroundSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundSeaCreatures").Description("Enemies in this set can be caught when fishing in the Underground Biome").RegisterBoolSet(false,
             NPCID.Mimic,
             NPCID.GiantWormBody,
             NPCID.GiantWormHead,
@@ -40,7 +40,7 @@ namespace Ichthyology.Systems
             NPCID.ToxicSludge
             );
 
-        public static bool[] CavernSC = NPCID.Sets.Factory.CreateNamedSet("Cavern Sea Creatures").Description("Enemies in this set can be caught when fishing in the Cavern Biome").RegisterBoolSet(false,
+        public static bool[] CavernSC = NPCID.Sets.Factory.CreateNamedSet("CavernSeaCreatures").Description("Enemies in this set can be caught when fishing in the Cavern Biome").RegisterBoolSet(false,
             NPCID.Mimic,
             NPCID.GiantWormBody,
             NPCID.GiantWormHead,
@@ -70,7 +70,7 @@ namespace Ichthyology.Systems
             NPCID.AnglerFish
             );
 
-        public static bool[] SnowSC = NPCID.Sets.Factory.CreateNamedSet("Snow Sea Creatures").Description("Enemies in this set can be caught when fishing in the Snow Biome").RegisterBoolSet(false,
+        public static bool[] SnowSC = NPCID.Sets.Factory.CreateNamedSet("SnowSeaCreatures").Description("Enemies in this set can be caught when fishing in the Snow Biome").RegisterBoolSet(false,
             NPCID.IceSlime,
             NPCID.ZombieEskimo,
             NPCID.ArmedZombieEskimo,
@@ -80,7 +80,7 @@ namespace Ichthyology.Systems
             NPCID.CrimsonPenguin
             );
 
-        public static bool[] IceSC = NPCID.Sets.Factory.CreateNamedSet("Ice Sea Creatures").Description("Enemies in this set can be caught when fishing in the Ice Underground Biome").RegisterBoolSet(false,
+        public static bool[] IceSC = NPCID.Sets.Factory.CreateNamedSet("IceSeaCreatures").Description("Enemies in this set can be caught when fishing in the Ice Underground Biome").RegisterBoolSet(false,
             NPCID.SnowFlinx,
             NPCID.UndeadViking,
             NPCID.ArmoredViking,
@@ -93,7 +93,7 @@ namespace Ichthyology.Systems
             NPCID.PigronHallow
             );
 
-        public static bool[] DesertSC = NPCID.Sets.Factory.CreateNamedSet("Desert Sea Creatures").Description("Enemies in this set can be caught when fishing in the Desert Biome").RegisterBoolSet(false,
+        public static bool[] DesertSC = NPCID.Sets.Factory.CreateNamedSet("DesertSeaCreatures").Description("Enemies in this set can be caught when fishing in the Desert Biome").RegisterBoolSet(false,
             NPCID.Antlion,
             NPCID.SandSlime,
             NPCID.Mummy,
@@ -103,7 +103,7 @@ namespace Ichthyology.Systems
             NPCID.SandElemental
             );
 
-        public static bool[] UndergroundDesertSC = NPCID.Sets.Factory.CreateNamedSet("Underground Desert Sea Creatures").Description("Enemies in this set can be caught when fishing in the Underground Desert Biome").RegisterBoolSet(false,
+        public static bool[] UndergroundDesertSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundDesertSeaCreatures").Description("Enemies in this set can be caught when fishing in the Underground Desert Biome").RegisterBoolSet(false,
             NPCID.DesertDjinn,
             NPCID.DuneSplicerBody,
             NPCID.DuneSplicerHead,
@@ -114,7 +114,7 @@ namespace Ichthyology.Systems
             NPCID.FlyingAntlion
             );
 
-        public static bool[] CorruptionSC = NPCID.Sets.Factory.CreateNamedSet("Corruption Sea Creatures").Description("Enemies in this set can be caught when fishing in the Corruption Biome").RegisterBoolSet(false,
+        public static bool[] CorruptionSC = NPCID.Sets.Factory.CreateNamedSet("CorruptionSeaCreatures").Description("Enemies in this set can be caught when fishing in the Corruption Biome").RegisterBoolSet(false,
             NPCID.DevourerBody,
             NPCID.DevourerHead,
             NPCID.DevourerTail,
@@ -129,7 +129,7 @@ namespace Ichthyology.Systems
             NPCID.SeekerTail
             );
 
-        public static bool[] UndergroundCorruptionSC = NPCID.Sets.Factory.CreateNamedSet("Underground Corruption Sea Creatures").Description("Enemies in this set can be caught when fishing in the Underground Corruption Biome").RegisterBoolSet(false,
+        public static bool[] UndergroundCorruptionSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundCorruptionSeaCreatures").Description("Enemies in this set can be caught when fishing in the Underground Corruption Biome").RegisterBoolSet(false,
             NPCID.DevourerBody,
             NPCID.DevourerHead,
             NPCID.DevourerTail,
@@ -142,7 +142,7 @@ namespace Ichthyology.Systems
             NPCID.CorruptGoldfish
             );
 
-        public static bool[] CrimsonSC = NPCID.Sets.Factory.CreateNamedSet("Crimson Sea Creatures").Description("Enemies in this set can be caught when fishing in the Crimson Biome").RegisterBoolSet(false,
+        public static bool[] CrimsonSC = NPCID.Sets.Factory.CreateNamedSet("CrimsonSeaCreatures").Description("Enemies in this set can be caught when fishing in the Crimson Biome").RegisterBoolSet(false,
             NPCID.Crimera,
             NPCID.BigCrimera,
             NPCID.LittleCrimera,
@@ -154,7 +154,7 @@ namespace Ichthyology.Systems
             NPCID.Crimslime
             );
 
-        public static bool[] UndergroundCrimsonSC = NPCID.Sets.Factory.CreateNamedSet("Underground Crimson Sea Creatures").Description("Enemies in this set can be caught when fishing in the Underground Crimson Biome").RegisterBoolSet(false,
+        public static bool[] UndergroundCrimsonSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundCrimsonSeaCreatures").Description("Enemies in this set can be caught when fishing in the Underground Crimson Biome").RegisterBoolSet(false,
             NPCID.FloatyGross,
             NPCID.IchorSticker,
             NPCID.CrimsonAxe,
@@ -163,7 +163,7 @@ namespace Ichthyology.Systems
             NPCID.BloodFeeder
             );
 
-        public static bool[] JungleSC = NPCID.Sets.Factory.CreateNamedSet("Jungle Sea Creatures").Description("Enemies in this set can be caught when fishing in the Jungle Biome").RegisterBoolSet(false,
+        public static bool[] JungleSC = NPCID.Sets.Factory.CreateNamedSet("JungleSeaCreatures").Description("Enemies in this set can be caught when fishing in the Jungle Biome").RegisterBoolSet(false,
             NPCID.Piranha,
             NPCID.JungleSlime,
             NPCID.DoctorBones,
@@ -173,7 +173,7 @@ namespace Ichthyology.Systems
             NPCID.Arapaima
             );
 
-        public static bool[] UndergroundJungleSC = NPCID.Sets.Factory.CreateNamedSet("Underground Jungle Creatures").Description("Enemies in this set can be caught when fishing in the Underground Jungle Biome").RegisterBoolSet(false,
+        public static bool[] UndergroundJungleSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundJungleSeaCreatures").Description("Enemies in this set can be caught when fishing in the Underground Jungle Biome").RegisterBoolSet(false,
             NPCID.JungleCreeper,
             NPCID.JungleCreeperWall,
             NPCID.Hornet,
@@ -203,7 +203,7 @@ namespace Ichthyology.Systems
             NPCID.LacBeetle
             );
 
-        public static bool[] DungeonSC = NPCID.Sets.Factory.CreateNamedSet("Dungeon Sea Creatures").Description("Enemies in this set can be caught when fishing in the Dungeon").RegisterBoolSet(false,
+        public static bool[] DungeonSC = NPCID.Sets.Factory.CreateNamedSet("DungeonSeaCreatures").Description("Enemies in this set can be caught when fishing in the Dungeon").RegisterBoolSet(false,
             NPCID.AngryBones,
             NPCID.AngryBonesBig,
             NPCID.AngryBonesBigHelmet,
@@ -214,7 +214,7 @@ namespace Ichthyology.Systems
             //Custom Enemy goes here
             );
 
-        public static bool[] OceanSC = NPCID.Sets.Factory.CreateNamedSet("Ocean Sea Creatures").Description("Enemies in this set can be caught when fishing in the Ocean").RegisterBoolSet(false,
+        public static bool[] OceanSC = NPCID.Sets.Factory.CreateNamedSet("OceanSeaCreatures").Description("Enemies in this set can be caught when fishing in the Ocean").RegisterBoolSet(false,
             NPCID.PinkJellyfish,
             NPCID.Crab,
             NPCID.Squid,
@@ -222,7 +222,7 @@ namespace Ichthyology.Systems
             NPCID.SeaSnail
             );
 
-        public static bool[] LavaSC = NPCID.Sets.Factory.CreateNamedSet("Lava Sea Creatures").Description("Enemies in this set can be caught when fishing in Lava").RegisterBoolSet(false,
+        public static bool[] LavaSC = NPCID.Sets.Factory.CreateNamedSet("LavaSeaCreatures").Description("Enemies in this set can be caught when fishing in Lava").RegisterBoolSet(false,
             NPCID.BlueArmoredBones,
             NPCID.BlueArmoredBonesMace,
             NPCID.BlueArmoredBonesNoPants,
@@ -246,7 +246,7 @@ namespace Ichthyology.Systems
             NPCID.RedDevil
             );
 
-        public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("All Sea Creatures").Description("Set of all Sea Creatures").RegisterBoolSet(false,
+        public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("AllSeaCreatures").Description("Set of allSeaCreatures").RegisterBoolSet(false,
             //Lava SC
             NPCID.BlueArmoredBones,
             NPCID.BlueArmoredBonesMace,
