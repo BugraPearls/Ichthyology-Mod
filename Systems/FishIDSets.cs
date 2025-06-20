@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Systems
@@ -346,18 +343,11 @@ namespace Ichthyology.Systems
             NPCID.CursedHammer,
             NPCID.BigMimicCorruption,
             NPCID.CorruptGoldfish,
-            NPCID.DevourerBody,
-            NPCID.DevourerHead,
-            NPCID.DevourerTail,
             NPCID.EaterofSouls,
             NPCID.LittleEater,
             NPCID.BigEater,
-            NPCID.Corruptor,
             NPCID.Slimer,
             NPCID.Slimer2,
-            NPCID.SeekerBody,
-            NPCID.SeekerHead,
-            NPCID.SeekerTail,
             //Desert SC
             NPCID.DesertDjinn,
             NPCID.DuneSplicerBody,
@@ -388,12 +378,10 @@ namespace Ichthyology.Systems
             NPCID.IceSlime,
             NPCID.ZombieEskimo,
             NPCID.ArmedZombieEskimo,
-            NPCID.IceElemental,
             NPCID.IceGolem,
             NPCID.CorruptPenguin,
             NPCID.CrimsonPenguin,
             //Underground and Cavern SC
-            NPCID.Mimic,
             NPCID.GiantWormBody,
             NPCID.GiantWormHead,
             NPCID.GiantWormTail,
@@ -418,17 +406,6 @@ namespace Ichthyology.Systems
             NPCID.GiantShelly,
             NPCID.GiantShelly2,
             NPCID.Nymph,
-            NPCID.Piranha,
-            NPCID.AnglerFish,
-            NPCID.Mimic,
-            NPCID.GiantWormBody,
-            NPCID.GiantWormHead,
-            NPCID.GiantWormTail,
-            NPCID.BlueJellyfish,
-            NPCID.DiggerBody,
-            NPCID.DiggerHead,
-            NPCID.DiggerTail,
-            NPCID.ToxicSludge,
             //Forest SC
             NPCID.Zombie,
             NPCID.DemonEye,
