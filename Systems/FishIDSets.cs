@@ -173,7 +173,7 @@ namespace Ichthyology.Systems
             NPCID.Arapaima
             );
 
-        public static bool[] UndergroundJungleSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundJungleSeaCreatures").Description("Enemies in this set can be caught when fishing in the Underground Jungle Biome").RegisterBoolSet(false,
+        public static bool[] UndergroundJungleSC = NPCID.Sets.Factory.CreateNamedSet("UndergroundJungleCreatures").Description("Enemies in this set can be caught when fishing in the Underground Jungle Biome").RegisterBoolSet(false,
             NPCID.JungleCreeper,
             NPCID.JungleCreeperWall,
             NPCID.Hornet,
@@ -246,7 +246,7 @@ namespace Ichthyology.Systems
             NPCID.RedDevil
             );
 
-        public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("AllSeaCreatures").Description("Set of allSeaCreatures").RegisterBoolSet(false,
+        public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("AllSeaCreatures").Description("Set of all Sea Creatures").RegisterBoolSet(false,
             //Lava SC
             NPCID.BlueArmoredBones,
             NPCID.BlueArmoredBonesMace,
@@ -424,6 +424,22 @@ namespace Ichthyology.Systems
             NPCID.WyvernLegs,
             NPCID.FlyingFish
             //Custom Space Enemy
+            );
+
+        public static bool[] GoldCritters = ItemID.Sets.Factory.CreateNamedSet("AllGoldenCritters").Description("Set of all Golden Critters").RegisterBoolSet(false,
+            ItemID.GoldBird,
+            ItemID.GoldBunny,
+            ItemID.GoldButterfly,
+            ItemID.GoldDragonfly,
+            ItemID.GoldFrog,
+            ItemID.GoldGoldfish,
+            ItemID.GoldGrasshopper,
+            ItemID.GoldLadyBug,
+            ItemID.GoldMouse,
+            ItemID.GoldSeahorse,
+            ItemID.SquirrelGold,
+            ItemID.GoldWaterStrider,
+            ItemID.GoldWorm
             );
     }
 }
