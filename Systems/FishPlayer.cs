@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ichthyology.Items;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,13 @@ namespace Ichthyology.Systems
         public override void ResetInfoAccessories()
         {
             displaySCC = false;
+        }
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            if (FishIDSets.GoldCritters[attempt.playerFishingConditions.Bait.type] && Main.rand.NextBool(5))
+            {
+                
+            }
         }
     }
 }
