@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Systems
@@ -12,8 +13,15 @@ namespace Ichthyology.Systems
     /// </summary>
     public class FishPlayer : ModPlayer
     {
+        /// <summary>
+        /// Invoked in SeaCreature.cs, OnSpawn hook.
+        /// </summary>
+        public static Action<NPC, Player> OnSeaCreatureCaught;
         //sc = Sea Creature = Enemies caught by reeling in.
-
+        public override void Load()
+        {
+            
+        }
         /// <summary>
         /// Chance to catch Sea Creatures.
         /// </summary>
