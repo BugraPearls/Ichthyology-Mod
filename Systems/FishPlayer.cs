@@ -59,9 +59,12 @@ namespace Ichthyology.Systems
         }
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
-            if (FishIDSets.GoldCritters[attempt.playerFishingConditions.Bait.type] && Main.rand.NextBool(5))
+            if (attempt.playerFishingConditions.Bait.type == ModContent.ItemType<GoldenBait>() && Main.rand.NextBool(5))
             {
-                
+                if (Player.ZoneBeach)
+                {
+                    
+                }
             }
         }
     }
