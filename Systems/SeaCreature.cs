@@ -11,11 +11,13 @@ namespace Ichthyology.Systems
 {
     public class SeaCreature : GlobalNPC
     {
+        public bool isASeaCreature = false;
         public override bool InstancePerEntity => true;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             if (source is EntitySource_FishedOut fisherman)
             {
+                isASeaCreature = true;
                 if (fisherman.Fisher is Player fisher)
                 {
                     FishPlayer.OnSeaCreatureCaught.Invoke(npc, fisher);
