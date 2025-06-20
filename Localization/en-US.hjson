@@ -1,0 +1,22 @@
+Mods: {
+	Ichthyology: {
+		InfoDisplays: {
+			SCCDisplay: {
+				DisplayName: Sea Creature Catching Chance
+				CurrentSCCText: % Enemy catching chance
+			}
+		}
+
+		Items: {
+			GoldenBait: {
+				DisplayName: Golden Bait
+				Tooltip: ""
+			}
+
+			IchthyologicalSonar: {
+				DisplayName: Ichthyological Sonar
+				Tooltip: ""
+			}
+		}
+	}
+}

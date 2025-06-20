@@ -344,8 +344,8 @@ namespace Ichthyology.Systems
             NPCID.BigMimicCorruption,
             NPCID.CorruptGoldfish,
             NPCID.EaterofSouls,
-            NPCID.LittleEater,
-            NPCID.BigEater,
+            NPCID.FromNetId(NPCID.LittleEater),
+            NPCID.FromNetId(NPCID.BigEater),
             NPCID.Slimer,
             NPCID.FromNetId(NPCID.Slimer2),
             //Desert SC

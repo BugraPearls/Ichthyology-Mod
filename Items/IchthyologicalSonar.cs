@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Ichthyology.Items
 {
-    public class SCCDisplayItem : ModItem
+    public class IchthyologicalSonar : ModItem
     {
         public override void SetDefaults()
         {
