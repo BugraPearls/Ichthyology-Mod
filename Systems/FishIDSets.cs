@@ -425,5 +425,21 @@ namespace Ichthyology.Systems
             NPCID.FlyingFish
             //Custom Space Enemy
             );
+
+        public static bool[] GoldCritters = ItemID.Sets.Factory.CreateNamedSet("All Golden Critters").Description("Set of all Golden Critters").RegisterBoolSet(false,
+            ItemID.GoldBird,
+            ItemID.GoldBunny,
+            ItemID.GoldButterfly,
+            ItemID.GoldDragonfly,
+            ItemID.GoldFrog,
+            ItemID.GoldGoldfish,
+            ItemID.GoldGrasshopper,
+            ItemID.GoldLadyBug,
+            ItemID.GoldMouse,
+            ItemID.GoldSeahorse,
+            ItemID.SquirrelGold,
+            ItemID.GoldWaterStrider,
+            ItemID.GoldWorm
+            );
     }
 }
