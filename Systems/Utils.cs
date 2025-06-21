@@ -6,12 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Systems
 {
     public static class Utils
     {
+        /// <summary>
+        /// Used as Utils.LocVal("type your given value in Localization after Mods.Ichthyology.")
+        /// </summary>
+        public static string LocVal(string val)
+        {
+            return Language.GetTextValue("Mods.Ichthyology." + val);
+        }
         public static FishPlayer IchthologyPlayer(this Player player) => player.GetModPlayer<FishPlayer>();
 
         public static int Randomizer(int numToBeRandomized, int randomizeTo = 100)
