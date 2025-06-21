@@ -68,10 +68,30 @@ namespace Ichthyology.Systems
                 WeightedRandom<int> PossibleMobSpawns = new();
                 if (Player.ZoneSkyHeight)
                 {
-                    PossibleMobSpawns.Add(NPCID.WyvernHead, 50);
-                    PossibleMobSpawns.Add(NPCID.FlyingFish, 500);
+                    PossibleMobSpawns.Add(NPCID.FlyingFish, 850);
+                    //insert custom mob here, weight will be 100
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.WyvernHead, 50);
+                    }
                 }
-
+                if (Player.ZoneForest)
+                {
+                    //insert custom mob here, weight will be 100
+                    if (Main.dayTime)
+                    {
+                        PossibleMobSpawns.Add(NPCID.GreenSlime, );
+                        PossibleMobSpawns.Add(NPCID.BlueSlime, );
+                        PossibleMobSpawns.Add(NPCID.PurpleSlime, );
+                        PossibleMobSpawns.Add(NPCID.Pinky, );
+                    }
+                    if (Main.dayTime is false)
+                    {
+                        PossibleMobSpawns.Add(NPCID.Zombie, );
+                        PossibleMobSpawns.Add(NPCID.Demon)
+                        PossibleMobSpawns.Add(NPCID.Werewolf, )
+                    }
+                }
                 npcSpawn = PossibleMobSpawns; //This is where its determined which Mob out of all on the Weighted list spawns.
             }
         }
