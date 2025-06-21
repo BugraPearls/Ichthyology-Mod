@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ichthyology.Systems;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Items
 {
-    public class GoldenBait : ModItem
+    public class CreatureBait : ModItem
     {
-        public int goldenPower = 25;
+        public int creatureBaitPower = 25;
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.ApprenticeBait);
-            Item.bait = goldenPower;
+            Item.bait = creatureBaitPower;
         }
     }
 }

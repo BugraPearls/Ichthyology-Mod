@@ -63,7 +63,7 @@ namespace Ichthyology.Systems
         }
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
-            if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance*100),100),100))
+            if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
             {
                 WeightedRandom<int> PossibleMobSpawns = new();
                 if (Player.ZoneSkyHeight)
