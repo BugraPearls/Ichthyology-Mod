@@ -17,7 +17,7 @@ namespace Ichthyology.Systems
         /// </summary>
         /// <param name="player"></param>
         /// <returns></returns>
-        public static int CatchCreature(Player player)
+        public static int CatchCreature(Player player, FishingAttempt attempt)
         {
             /// <summary>
             /// Here the "Weight" of a Sea creature caught is calculated. Common mob value = 300. Uncommon mob value = 150. Rare mob value = 50
@@ -35,7 +35,7 @@ namespace Ichthyology.Systems
             }
 
             //Forest SC
-            if (player.ZoneForest)
+            else if (player.ZoneForest)
             {
                 //insert custom mob here, weight will be 100
                 if (Main.dayTime)
@@ -56,7 +56,7 @@ namespace Ichthyology.Systems
             }
 
             //Underground SC
-            if (player.ZoneNormalUnderground)
+            else if (player.ZoneNormalUnderground)
             {
                 PossibleMobSpawns.Add(NPCID.GiantWormHead, 150);
                 PossibleMobSpawns.Add(NPCID.BlueJellyfish, 300);
@@ -67,7 +67,7 @@ namespace Ichthyology.Systems
             }
 
             //Caverns SC
-            if (player.ZoneNormalCaverns)
+            else if (player.ZoneNormalCaverns)
             {
                 PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300,
                     NPCID.Piranha,
@@ -99,7 +99,7 @@ namespace Ichthyology.Systems
             }
 
             //Snow Biome SC
-            if (player.ZoneSnow)
+            else if (player.ZoneSnow)
             {
                 if (!player.ZoneRockLayerHeight)
                 {
@@ -109,7 +109,9 @@ namespace Ichthyology.Systems
                     }
                     if (Main.dayTime is false)
                     {
-                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300, NPCID.ZombieEskimo, NPCID.ArmedZombieEskimo);
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300, 
+                            NPCID.ZombieEskimo, 
+                            NPCID.ArmedZombieEskimo);
                     }
                     if (Main.hardMode)
                     {
@@ -129,7 +131,7 @@ namespace Ichthyology.Systems
                     }
                 }
                 //Underground Ice Biome SC
-                if (player.ZoneRockLayerHeight)
+                else if (player.ZoneRockLayerHeight)
                 {
                     PossibleMobSpawns.Add(NPCID.SnowFlinx, 150);
                     PossibleMobSpawns.Add(NPCID.UndeadViking, 300);
@@ -144,11 +146,11 @@ namespace Ichthyology.Systems
                         {
                             PossibleMobSpawns.Add(NPCID.PigronHallow, 50);
                         }
-                        if (player.ZoneCorrupt)
+                        else if (player.ZoneCorrupt)
                         {
                             PossibleMobSpawns.Add(NPCID.PigronCorruption, 50);
                         }
-                        if (player.ZoneCrimson)
+                        else if (player.ZoneCrimson)
                         {
                             PossibleMobSpawns.Add(NPCID.PigronCrimson, 50);
                         }
@@ -157,7 +159,7 @@ namespace Ichthyology.Systems
             }
 
             //Desert SC
-            if (player.ZoneDesert)
+            else if (player.ZoneDesert)
             {
                 PossibleMobSpawns.Add(NPCID.Antlion, 300);
                 PossibleMobSpawns.Add(NPCID.SandSlime, 300);
@@ -168,11 +170,11 @@ namespace Ichthyology.Systems
                     {
                         PossibleMobSpawns.Add(NPCID.LightMummy, 50);
                     }
-                    if (player.ZoneCorrupt)
+                    else if (player.ZoneCorrupt)
                     {
                         PossibleMobSpawns.Add(NPCID.DarkMummy, 50);
                     }
-                    if (player.ZoneCrimson)
+                    else if (player.ZoneCrimson)
                     {
                         PossibleMobSpawns.Add(NPCID.BloodMummy, 50);
                     }
@@ -180,7 +182,7 @@ namespace Ichthyology.Systems
             }
 
             //Underground Desert SC
-            if (player.ZoneUndergroundDesert)
+            else if (player.ZoneUndergroundDesert)
             {
                 PossibleMobSpawns.Add(NPCID.TombCrawlerHead, 150);
                 PossibleMobSpawns.Add(NPCID.FlyingAntlion, 300);
@@ -192,7 +194,7 @@ namespace Ichthyology.Systems
             }
 
             //Corruption SC
-            if (player.ZoneCorrupt)
+            else if (player.ZoneCorrupt)
             {
                 PossibleMobSpawns.Add(NPCID.DevourerHead, 150);
                 if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
@@ -211,7 +213,7 @@ namespace Ichthyology.Systems
                     }
                 }
                 //Underground Corruption SC
-                if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
+                else if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
                 {
                     if (Main.hardMode)
                     {
@@ -228,7 +230,7 @@ namespace Ichthyology.Systems
             }
 
             //Crimson SC
-            if (player.ZoneCrimson)
+            else if (player.ZoneCrimson)
             {
                 if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
                 {
@@ -248,15 +250,135 @@ namespace Ichthyology.Systems
                     }
                 }
                 //Underground Crimson SC
-                if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
+                else if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
                 {
                     if (Main.hardMode)
                     {
-
+                        PossibleMobSpawns.Add(NPCID.FloatyGross, 150);
+                        PossibleMobSpawns.Add(NPCID.IchorSticker, 150);
+                        PossibleMobSpawns.Add(NPCID.BloodJelly, 300);
+                        PossibleMobSpawns.Add(NPCID.BloodFeeder, 300);
+                        PossibleMobSpawns.Add(NPCID.BigMimicCrimson, 50);
                     }
                 }
             }
-            
+
+            //Jungle SC
+            else if (player.ZoneJungle)
+            {
+                if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
+                {
+                    PossibleMobSpawns.Add(NPCID.Piranha, 300);
+                    PossibleMobSpawns.Add(NPCID.JungleSlime, 300);
+                    if (Main.dayTime is false)
+                    {
+                        PossibleMobSpawns.Add(NPCID.DoctorBones, 50);
+                    }
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 50,
+                            NPCID.GiantTortoise,
+                            NPCID.Derpling);
+                        PossibleMobSpawns.Add(NPCID.Arapaima, 150);
+                        PossibleMobSpawns.Add(NPCID.AnglerFish, 300);
+                    }
+                }
+                //Underground Jungle
+                else if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
+                {
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300,
+                        NPCID.JungleCreeper,
+                        NPCID.Hornet,
+                        NPCID.HornetFatty,
+                        NPCID.HornetHoney,
+                        NPCID.HornetLeafy,
+                        NPCID.HornetSpikey,
+                        NPCID.HornetStingy,
+                        NPCID.BigHornetFatty,
+                        NPCID.BigHornetHoney,
+                        NPCID.BigHornetLeafy,
+                        NPCID.BigHornetSpikey,
+                        NPCID.BigHornetStingy,
+                        NPCID.BigMossHornet,
+                        NPCID.GiantMossHornet,
+                        NPCID.LittleHornetFatty,
+                        NPCID.LittleHornetHoney,
+                        NPCID.LittleHornetLeafy,
+                        NPCID.LittleHornetSpikey,
+                        NPCID.LittleHornetStingy,
+                        NPCID.LittleMossHornet,
+                        NPCID.MossHornet,
+                        NPCID.Piranha);
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.Arapaima, 150);
+                        PossibleMobSpawns.Add(NPCID.GiantTortoise, 50);
+                        PossibleMobSpawns.Add(NPCID.Moth, 50);
+                        PossibleMobSpawns.Add(NPCID.LacBeetle, 50);
+                    }
+                }
+            }
+
+            //Dungeon SC
+            else if (player.ZoneDungeon)
+            {
+                //insert custom enemy here
+                PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300,
+                    NPCID.AngryBones,
+                    NPCID.AngryBonesBig,
+                    NPCID.AngryBonesBigHelmet,
+                    NPCID.AngryBonesBigMuscle);
+                PossibleMobSpawns.Add(NPCID.CursedSkull, 150);
+                PossibleMobSpawns.Add(NPCID.DungeonSlime, 50);
+                if (Main.hardMode)
+                {
+                    PossibleMobSpawns.Add(NPCID.DungeonSpirit, 150);
+                }
+            }
+
+            //Ocean SC
+            else if (player.ZoneBeach)
+            {
+                PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300,
+                    NPCID.PinkJellyfish,
+                    NPCID.Crab);
+                PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150,
+                    NPCID.Shark,
+                    NPCID.SeaSnail);
+                PossibleMobSpawns.Add(NPCID.Squid, 50);
+            }
+
+            else if (attempt.inLava)
+            {
+                PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150,
+                    NPCID.BlueArmoredBones,
+                    NPCID.BlueArmoredBonesMace,
+                    NPCID.BlueArmoredBonesNoPants,
+                    NPCID.BlueArmoredBonesSword,
+                    NPCID.RustyArmoredBonesAxe,
+                    NPCID.RustyArmoredBonesFlail,
+                    NPCID.RustyArmoredBonesSword,
+                    NPCID.RustyArmoredBonesSwordNoArmor,
+                    NPCID.HellArmoredBones,
+                    NPCID.HellArmoredBonesMace,
+                    NPCID.HellArmoredBonesSpikeShield,
+                    NPCID.HellArmoredBonesSword);
+                PossibleMobSpawns.Add(NPCID.Mimic, 50);
+                if (player.ZoneUnderworldHeight)
+                {
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300, 
+                        NPCID.Demon,
+                        NPCID.LavaSlime,
+                        NPCID.Hellbat);
+                    PossibleMobSpawns.Add(NPCID.BoneSerpentHead, 150);
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.Lavabat, 300);
+                        PossibleMobSpawns.Add(NPCID.RedDevil, 50);
+                    }
+                }
+            }
+
             return PossibleMobSpawns;
         }
     }
