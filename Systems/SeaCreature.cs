@@ -11,6 +11,7 @@ namespace Ichthyology.Systems
 {
     public class SeaCreature : GlobalNPC
     {
+        public override bool InstancePerEntity => true;
         public bool isASeaCreature = false;
         public int fisherWhoAmI = -1;
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
