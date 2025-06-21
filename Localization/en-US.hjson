@@ -12,17 +12,21 @@ Mods: {
 				DisplayName: Golden Bait
 				Tooltip: ""
 			}
+
 			MagneticBait: {
 				DisplayName: Magnetic Bait
 				Tooltip: ""
 			}
+
 			CreatureBait: {
 				DisplayName: Creature Bait
 				Tooltip: ""
 			}
+
 			FishBait: {
 				Displayname: Fish Bait
 				Tooltip: ""
+				DisplayName: Fish Bait
 			}
 
 			IchthyologicalSonar: {
