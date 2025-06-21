@@ -93,7 +93,7 @@ namespace Ichthyology.Systems
             Main.NewText(scChance);
             if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
             {
-                npcSpawn = SeaCreatureCatch.CatchCreature(Player); //This is where its determined which Mob out of all on the Weighted list spawns.
+                npcSpawn = SeaCreatureCatch.CatchCreature(Player, attempt); //This is where its determined which Mob out of all on the Weighted list spawns.
             }
         }
     }
