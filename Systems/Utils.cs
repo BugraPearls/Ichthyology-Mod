@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Ichthyology.Systems
 {
@@ -22,6 +23,7 @@ namespace Ichthyology.Systems
         }
         public static FishPlayer IchthologyPlayer(this Player player) => player.GetModPlayer<FishPlayer>();
 
+        public static IchthyologyBestiary IchthologyBestiary(this Player player) => player.GetModPlayer<IchthyologyBestiary>();
         public static int Randomizer(int numToBeRandomized, int randomizeTo = 100)
         {
             if (randomizeTo < 0)
@@ -41,6 +43,18 @@ namespace Ichthyology.Systems
                 amount++;
             }
             return amount;
+        }
+
+        /// <summary>
+        /// Adds to given WeightedRandom list with given weight, for all given id parameters.
+        /// </summary>
+        public static WeightedRandom<int> AddToWeightedForSame(WeightedRandom<int> WeightedList, double weight, params int[] ids)
+        {
+            foreach (var item in ids)
+            {
+                WeightedList.Add(item,weight);
+            }
+            return WeightedList;
         }
     }
 }
