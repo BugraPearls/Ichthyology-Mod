@@ -10,6 +10,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using Terraria.WorldBuilding;
 
 namespace Ichthyology.Systems
 {
@@ -68,14 +69,14 @@ namespace Ichthyology.Systems
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             /// <summary>
-            /// Here the "Weight" of a Sea creature caught is calculated. Weight base value will be 1000 = 100% in PreHardmode
+            /// Here the "Weight" of a Sea creature caught is calculated. Common mob value = 300. Uncommon mob value = 150. Rare mob value = 50
             /// </summary>
             if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
             {
                 WeightedRandom<int> PossibleMobSpawns = new();
                 if (Player.ZoneSkyHeight)
                 {
-                    PossibleMobSpawns.Add(NPCID.FlyingFish, 900);
+                    PossibleMobSpawns.Add(NPCID.FlyingFish, 300);
                     //insert custom mob here, weight will be 100
                     if (Main.hardMode)
                     {
@@ -89,44 +90,81 @@ namespace Ichthyology.Systems
                     {
                         PossibleMobSpawns.Add(NPCID.GreenSlime, 300);
                         PossibleMobSpawns.Add(NPCID.BlueSlime, 300);
-                        PossibleMobSpawns.Add(NPCID.PurpleSlime, 250);
+                        PossibleMobSpawns.Add(NPCID.PurpleSlime, 150);
                         PossibleMobSpawns.Add(NPCID.Pinky, 50);
                     }
                     if (Main.dayTime is false)
                     {
-                        PossibleMobSpawns.Add(NPCID.Zombie, 500);
-                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 250, NPCID.DemonEye, NPCID.DemonEye2);
+                        PossibleMobSpawns.Add(NPCID.Zombie, 300);
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150, NPCID.DemonEye, NPCID.DemonEye2);
                         if (Main.hardMode)
                         {
-                            PossibleMobSpawns.Add(NPCID.Werewolf, 100);
+                            PossibleMobSpawns.Add(NPCID.Werewolf, 50);
                         }
                     }
                 }
                 if (Player.ZoneNormalUnderground)
                 {
-                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 200);
-                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 800);
+                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 150);
+                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 300);
                     if (Main.hardMode)
                     {
-                        PossibleMobSpawns.Add(NPCID.Mimic, 100);
-                        PossibleMobSpawns.Add(NPCID.DiggerHead, 200);
-                        PossibleMobSpawns.Add(NPCID.ToxicSludge, 200);
+                        PossibleMobSpawns.Add(NPCID.Mimic, 150);
+                        PossibleMobSpawns.Add(NPCID.DiggerHead, 150);
+                        PossibleMobSpawns.Add(NPCID.ToxicSludge, 150);
                     }
                 }
                 if (Player.ZoneNormalCaverns)
                 {
-                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 100);
-                    PossibleMobSpawns.Add(NPCID.Piranha, 150);
+                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 150);
+                    PossibleMobSpawns.Add(NPCID.Piranha, 300);
                     PossibleMobSpawns.Add(NPCID.Nymph, 50);
-                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 500);
-                    PossibleMobSpawns.Add(NPCID.GiantShelly, 100);
-                    PossibleMobSpawns.Add(NPCID.GiantShelly2, 100);
+                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 300);
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150, NPCID.GiantShelly, NPCID.GiantShelly2);
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 50, NPCID.Crawdad, NPCID.Crawdad2);
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 50,
+                        NPCID.Salamander,
+                        NPCID.Salamander2,
+                        NPCID.Salamander3,
+                        NPCID.Salamander4,
+                        NPCID.Salamander5,
+                        NPCID.Salamander6,
+                        NPCID.Salamander7,
+                        NPCID.Salamander8,
+                        NPCID.Salamander9);
                     if(Main.hardMode)
                     {
-                        PossibleMobSpawns.Add(NPCID.GreenJellyfish);
-                        PossibleMobSpawns.Add(NPCID.DiggerHead);
-                        PossibleMobSpawns.Add(NPCID.RockGolem);
-                        PossibleMobSpawns.Add(NPCID.AnglerFish);
+                        PossibleMobSpawns.Add(NPCID.GreenJellyfish, 300);
+                        PossibleMobSpawns.Add(NPCID.DiggerHead, 100);
+                        PossibleMobSpawns.Add(NPCID.RockGolem, 50);
+                        PossibleMobSpawns.Add(NPCID.AnglerFish, 100);
+                    }
+                }
+                if (Player.ZoneSnow)
+                {
+                    if (Main.dayTime)
+                    {
+                        PossibleMobSpawns.Add(NPCID.IceSlime, 300);
+                    }
+                    if (Main.dayTime is false)
+                    {
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300, NPCID.ZombieEskimo, NPCID.ArmedZombieEskimo);
+                    }
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.IceGolem, 50);
+                        if (Main.dayTime is false)
+                        {
+
+                        }
+                    }
+                    if ((Main.bloodMoon && Condition.CorruptWorld.IsMet()) || Player.ZoneCorrupt)
+                    {
+                        PossibleMobSpawns.Add(NPCID.CorruptPenguin, 150);
+                    }
+                    if((Main.bloodMoon && Condition.CrimsonWorld.IsMet()) || Player.ZoneCrimson)
+                    {
+                        PossibleMobSpawns.Add(NPCID.CrimsonPenguin, 150);
                     }
                 }
                 npcSpawn = PossibleMobSpawns; //This is where its determined which Mob out of all on the Weighted list spawns.
