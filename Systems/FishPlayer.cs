@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Ichthyology.Systems
 {
@@ -40,6 +41,8 @@ namespace Ichthyology.Systems
         /// </summary>
         public float scDamageResist = 1;
 
+        public float doubleHookChance = 0;
+
         public bool displaySCC;
         public override void ResetEffects()
         {
@@ -47,6 +50,7 @@ namespace Ichthyology.Systems
             baitReserveChance = 0;
             scBonusDamage = 1;
             scDamageResist = 1;
+            doubleHookChance = 0;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {
@@ -59,12 +63,16 @@ namespace Ichthyology.Systems
         }
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
-            if (attempt.playerFishingConditions.Bait.type == ModContent.ItemType<GoldenBait>() && Main.rand.NextBool(5))
+            if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance*100),100),100))
             {
-                if (Player.ZoneBeach)
+                WeightedRandom<int> PossibleMobSpawns = new();
+                if (Player.ZoneSkyHeight)
                 {
-                    
+                    PossibleMobSpawns.Add(NPCID.WyvernHead, 50);
+                    PossibleMobSpawns.Add(NPCID.FlyingFish, 500);
                 }
+
+                npcSpawn = PossibleMobSpawns; //This is where its determined which Mob out of all on the Weighted list spawns.
             }
         }
     }

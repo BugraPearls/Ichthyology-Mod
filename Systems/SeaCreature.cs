@@ -20,7 +20,7 @@ namespace Ichthyology.Systems
                 isASeaCreature = true;
                 if (fisherman.Fisher is Player fisher)
                 {
-                    FishPlayer.OnSeaCreatureCaught.Invoke(npc, fisher);
+                    FishPlayer.OnSeaCreatureCaught?.Invoke(npc, fisher);
                 }
             }
         }
