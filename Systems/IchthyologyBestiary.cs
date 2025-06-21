@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Ichthyology.Systems
 {
@@ -15,6 +16,18 @@ namespace Ichthyology.Systems
             if (KilledSeaCreatures.Contains(IdOfSC) == false)
             {
                 KilledSeaCreatures.Add(IdOfSC);
+            }
+        }
+        public override void SaveData(TagCompound tag)
+        {
+            tag.Add("KilledSeaCreatures", KilledSeaCreatures);
+        }
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.TryGet("KilledSeaCreatures", out List<int> seaCreatures))
+            {
+                KilledSeaCreatures = seaCreatures;
+                KilledSeaCreatures = KilledSeaCreatures.Distinct().ToList();
             }
         }
     }
