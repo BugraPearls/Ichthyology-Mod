@@ -67,12 +67,15 @@ namespace Ichthyology.Systems
         }
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
+            /// <summary>
+            /// Here the "Weight" of a Sea creature caught is calculated. Weight base value will be 1000 = 100% in PreHardmode
+            /// </summary>
             if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
             {
                 WeightedRandom<int> PossibleMobSpawns = new();
                 if (Player.ZoneSkyHeight)
                 {
-                    PossibleMobSpawns.Add(NPCID.FlyingFish, 850);
+                    PossibleMobSpawns.Add(NPCID.FlyingFish, 900);
                     //insert custom mob here, weight will be 100
                     if (Main.hardMode)
                     {
@@ -84,16 +87,46 @@ namespace Ichthyology.Systems
                     //insert custom mob here, weight will be 100
                     if (Main.dayTime)
                     {
-                        PossibleMobSpawns.Add(NPCID.GreenSlime, );
-                        PossibleMobSpawns.Add(NPCID.BlueSlime, );
-                        PossibleMobSpawns.Add(NPCID.PurpleSlime, );
-                        PossibleMobSpawns.Add(NPCID.Pinky, );
+                        PossibleMobSpawns.Add(NPCID.GreenSlime, 300);
+                        PossibleMobSpawns.Add(NPCID.BlueSlime, 300);
+                        PossibleMobSpawns.Add(NPCID.PurpleSlime, 250);
+                        PossibleMobSpawns.Add(NPCID.Pinky, 50);
                     }
                     if (Main.dayTime is false)
                     {
-                        PossibleMobSpawns.Add(NPCID.Zombie, );
-                        PossibleMobSpawns.Add(NPCID.Demon)
-                        PossibleMobSpawns.Add(NPCID.Werewolf, )
+                        PossibleMobSpawns.Add(NPCID.Zombie, 500);
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 250, NPCID.DemonEye, NPCID.DemonEye2);
+                        if (Main.hardMode)
+                        {
+                            PossibleMobSpawns.Add(NPCID.Werewolf, 100);
+                        }
+                    }
+                }
+                if (Player.ZoneNormalUnderground)
+                {
+                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 200);
+                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 800);
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.Mimic, 100);
+                        PossibleMobSpawns.Add(NPCID.DiggerHead, 200);
+                        PossibleMobSpawns.Add(NPCID.ToxicSludge, 200);
+                    }
+                }
+                if (Player.ZoneNormalCaverns)
+                {
+                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 100);
+                    PossibleMobSpawns.Add(NPCID.Piranha, 150);
+                    PossibleMobSpawns.Add(NPCID.Nymph, 50);
+                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 500);
+                    PossibleMobSpawns.Add(NPCID.GiantShelly, 100);
+                    PossibleMobSpawns.Add(NPCID.GiantShelly2, 100);
+                    if(Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.GreenJellyfish);
+                        PossibleMobSpawns.Add(NPCID.DiggerHead);
+                        PossibleMobSpawns.Add(NPCID.RockGolem);
+                        PossibleMobSpawns.Add(NPCID.AnglerFish);
                     }
                 }
                 npcSpawn = PossibleMobSpawns; //This is where its determined which Mob out of all on the Weighted list spawns.
