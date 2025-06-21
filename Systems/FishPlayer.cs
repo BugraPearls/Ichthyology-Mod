@@ -92,6 +92,7 @@ namespace Ichthyology.Systems
             if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
             {
                 WeightedRandom<int> PossibleMobSpawns = new();
+                //Space SC
                 if (Player.ZoneSkyHeight)
                 {
                     PossibleMobSpawns.Add(NPCID.FlyingFish, 300);
@@ -101,13 +102,14 @@ namespace Ichthyology.Systems
                         PossibleMobSpawns.Add(NPCID.WyvernHead, 50);
                     }
                 }
+
+                //Forest SC
                 if (Player.ZoneForest)
                 {
                     //insert custom mob here, weight will be 100
                     if (Main.dayTime)
                     {
-                        PossibleMobSpawns.Add(NPCID.GreenSlime, 300);
-                        PossibleMobSpawns.Add(NPCID.BlueSlime, 300);
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300, NPCID.GreenSlime, NPCID.BlueSlime);
                         PossibleMobSpawns.Add(NPCID.PurpleSlime, 150);
                         PossibleMobSpawns.Add(NPCID.Pinky, 50);
                     }
@@ -121,25 +123,28 @@ namespace Ichthyology.Systems
                         }
                     }
                 }
+
+                //Underground SC
                 if (Player.ZoneNormalUnderground)
                 {
                     PossibleMobSpawns.Add(NPCID.GiantWormHead, 150);
                     PossibleMobSpawns.Add(NPCID.BlueJellyfish, 300);
                     if (Main.hardMode)
                     {
-                        PossibleMobSpawns.Add(NPCID.Mimic, 150);
-                        PossibleMobSpawns.Add(NPCID.DiggerHead, 150);
-                        PossibleMobSpawns.Add(NPCID.ToxicSludge, 150);
+                        PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150, NPCID.Mimic, NPCID.DiggerHead, NPCID.ToxicSludge);
                     }
                 }
+
+                //Caverns SC
                 if (Player.ZoneNormalCaverns)
                 {
-                    PossibleMobSpawns.Add(NPCID.GiantWormHead, 150);
-                    PossibleMobSpawns.Add(NPCID.Piranha, 300);
-                    PossibleMobSpawns.Add(NPCID.Nymph, 50);
-                    PossibleMobSpawns.Add(NPCID.BlueJellyfish, 300);
-                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150, NPCID.GiantShelly, NPCID.GiantShelly2);
-                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 50, NPCID.Crawdad, NPCID.Crawdad2);
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 300, 
+                        NPCID.Piranha, 
+                        NPCID.BlueJellyfish);
+                    PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 150, 
+                        NPCID.GiantShelly, 
+                        NPCID.GiantShelly2, 
+                        NPCID.GiantWormHead);
                     PossibleMobSpawns = Utils.AddToWeightedForSame(PossibleMobSpawns, 50,
                         NPCID.Salamander,
                         NPCID.Salamander2,
@@ -149,7 +154,10 @@ namespace Ichthyology.Systems
                         NPCID.Salamander6,
                         NPCID.Salamander7,
                         NPCID.Salamander8,
-                        NPCID.Salamander9);
+                        NPCID.Salamander9, 
+                        NPCID.Nymph,
+                        NPCID.Crawdad, 
+                        NPCID.Crawdad2);
                     if(Main.hardMode)
                     {
                         PossibleMobSpawns.Add(NPCID.GreenJellyfish, 300);
@@ -158,6 +166,8 @@ namespace Ichthyology.Systems
                         PossibleMobSpawns.Add(NPCID.AnglerFish, 100);
                     }
                 }
+
+                //Snow Biome SC
                 if (Player.ZoneSnow)
                 {
                     if (Main.dayTime)
@@ -173,7 +183,7 @@ namespace Ichthyology.Systems
                         PossibleMobSpawns.Add(NPCID.IceGolem, 50);
                         if (Main.dayTime is false)
                         {
-
+                            PossibleMobSpawns.Add(NPCID.IceElemental, 50);
                         }
                     }
                     if ((Main.bloodMoon && Condition.CorruptWorld.IsMet()) || Player.ZoneCorrupt)
@@ -185,6 +195,63 @@ namespace Ichthyology.Systems
                         PossibleMobSpawns.Add(NPCID.CrimsonPenguin, 150);
                     }
                 }
+
+                //Ice Biome SC
+                if (Player.ZoneSnow && Player.ZoneRockLayerHeight)
+                {
+                    PossibleMobSpawns.Add(NPCID.SnowFlinx, 150);
+                    PossibleMobSpawns.Add(NPCID.UndeadViking, 300);
+                    if (Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.ArmoredViking, 300);
+                        PossibleMobSpawns.Add(NPCID.IceElemental, 50);
+                        PossibleMobSpawns.Add(NPCID.IceTortoise, 50);
+                        PossibleMobSpawns.Add(NPCID.IceMimic, 50);
+                        PossibleMobSpawns.Add(NPCID.IcyMerman, 150);
+                        if (Player.ZoneHallow)
+                        {
+                            PossibleMobSpawns.Add(NPCID.PigronHallow, 50);
+                        }
+                        if (Player.ZoneCorrupt)
+                        {
+                            PossibleMobSpawns.Add(NPCID.PigronCorruption, 50);
+                        }
+                        if (Player.ZoneCrimson)
+                        {
+                            PossibleMobSpawns.Add(NPCID.PigronCrimson, 50);
+                        }
+                    }
+                }
+
+                //Desert SC
+                if (Player.ZoneDesert)
+                {
+                    PossibleMobSpawns.Add(NPCID.Antlion, 300);
+                    PossibleMobSpawns.Add(NPCID.SandSlime, 300);
+                    if(Main.hardMode)
+                    {
+                        PossibleMobSpawns.Add(NPCID.Mummy, 150);
+                        if(Player.ZoneHallow)
+                        {
+                            PossibleMobSpawns.Add(NPCID.LightMummy, 50);
+                        }
+                        if (Player.ZoneCorrupt)
+                        {
+                            PossibleMobSpawns.Add(NPCID.DarkMummy, 50);
+                        }
+                        if (Player.ZoneCrimson)
+                        {
+                            PossibleMobSpawns.Add(NPCID.BloodMummy, 50);
+                        }
+                    }
+                }
+
+                //Underground Desert SC
+                if (Player.ZoneUndergroundDesert)
+                {
+                    PossibleMobSpawns.Add(NPCID.)
+                }
+
                 npcSpawn = PossibleMobSpawns; //This is where its determined which Mob out of all on the Weighted list spawns.
             }
         }
