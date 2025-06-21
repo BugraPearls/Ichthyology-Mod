@@ -12,7 +12,11 @@ namespace Ichthyology.Systems
     public class SeaCreature : GlobalNPC
     {
         public bool isASeaCreature = false;
-        public override bool InstancePerEntity => true;
+        public int fisherWhoAmI = -1;
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
+        {
+            return FishIDSets.AllSC[entity.type];
+        }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             if (source is EntitySource_FishedOut fisherman)
@@ -20,8 +24,16 @@ namespace Ichthyology.Systems
                 isASeaCreature = true;
                 if (fisherman.Fisher is Player fisher)
                 {
+                    fisherWhoAmI = fisher.whoAmI;
                     FishPlayer.OnSeaCreatureCaught?.Invoke(npc, fisher);
                 }
+            }
+        }
+        public override void OnKill(NPC npc)
+        {
+            if (isASeaCreature && fisherWhoAmI >= 0)
+            {
+                FishPlayer.OnSeaCreatureKilled?.Invoke(npc, Main.player[fisherWhoAmI]);
             }
         }
     }

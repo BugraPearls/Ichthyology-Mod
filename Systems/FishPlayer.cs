@@ -25,6 +25,10 @@ namespace Ichthyology.Systems
         /// </summary>
         public static Action<NPC, Player> OnSeaCreatureCaught;
         /// <summary>
+        /// Invoked in SeaCreature.cs, OnKill hook.
+        /// </summary>
+        public static Action<NPC, Player> OnSeaCreatureKilled;
+        /// <summary>
         /// Chance to catch Sea Creatures.
         /// </summary>
         public float scChance = 0.1f;
