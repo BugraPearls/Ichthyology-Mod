@@ -45,11 +45,14 @@ namespace Ichthyology.Systems
         /// Damage reduction towards Sea Creatures.
         /// </summary>
         public float scDamageResist = 1;
-
         /// <summary>
         /// Chance to throw out another bobber.
         /// </summary>
         public float doubleHookChance = 0;
+        /// <summary>
+        /// Amount which will increase the loot obtained from Sea Creatures.
+        /// </summary>
+        public float scLootIncrease = 0;
         /// <summary>
         /// Whether or not SCC to be displayed.
         /// </summary>
@@ -61,6 +64,7 @@ namespace Ichthyology.Systems
             scBonusDamage = 1;
             scDamageResist = 1;
             doubleHookChance = 0;
+            scLootIncrease = 0;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {
@@ -86,6 +90,7 @@ namespace Ichthyology.Systems
 
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
+            Main.NewText(scChance);
             if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
             {
                 npcSpawn = SeaCreatureCatch.CatchCreature(Player); //This is where its determined which Mob out of all on the Weighted list spawns.
