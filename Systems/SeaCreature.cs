@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Systems
@@ -36,6 +37,15 @@ namespace Ichthyology.Systems
             {
                 FishPlayer.OnSeaCreatureKilled?.Invoke(npc, Main.player[fisherWhoAmI]);
             }
+        }
+        public override void Load()
+        {
+            On_ItemDropResolver.ResolveRule += IncreasedSCDrops;
+        }
+
+        private static ItemDropAttemptResult IncreasedSCDrops(On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
+        {
+            
         }
     }
 }

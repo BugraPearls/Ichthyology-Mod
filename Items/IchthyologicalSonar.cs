@@ -18,7 +18,7 @@ namespace Ichthyology.Items
         }
         public override void UpdateInfoAccessory(Player player)
         {
-            player.IchthologyPlayer().displaySCC = true;
+            player.IchthyologyPlayer().displaySCC = true;
         }
     }
 }

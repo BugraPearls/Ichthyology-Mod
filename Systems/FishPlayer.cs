@@ -64,7 +64,7 @@ namespace Ichthyology.Systems
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {
-            if (otherPlayer.IchthologyPlayer().displaySCC)
+            if (otherPlayer.IchthyologyPlayer().displaySCC)
                 displaySCC = true;
         }
         public override void ResetInfoAccessories()
@@ -81,7 +81,7 @@ namespace Ichthyology.Systems
         }
         static void AddToBestiary(NPC npc, Player player)
         {
-            player.IchthologyBestiary().AddToList(npc.type);
+            player.IchthyologyBestiary().AddToList(npc.type);
         }
 
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)

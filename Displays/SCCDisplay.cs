@@ -21,12 +21,12 @@ namespace Ichthyology.Displays
         }
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
-            return Math.Round(Main.LocalPlayer.IchthologyPlayer().scChance * 100, 2).ToString() + CurrentSCCText;
+            return Math.Round(Main.LocalPlayer.IchthyologyPlayer().scChance * 100, 2).ToString() + CurrentSCCText;
         }
 
         public override bool Active()
         {
-            return Main.LocalPlayer.IchthologyPlayer().displaySCC;
+            return Main.LocalPlayer.IchthyologyPlayer().displaySCC;
         }
         //public override string HoverTexture => Texture + "_Hover";
     }

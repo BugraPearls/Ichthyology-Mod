@@ -21,9 +21,21 @@ namespace Ichthyology.Systems
         {
             return Language.GetTextValue("Mods.Ichthyology." + val);
         }
-        public static FishPlayer IchthologyPlayer(this Player player) => player.GetModPlayer<FishPlayer>();
-
-        public static IchthyologyBestiary IchthologyBestiary(this Player player) => player.GetModPlayer<IchthyologyBestiary>();
+        public static FishPlayer IchthyologyPlayer(this Player player) => player.GetModPlayer<FishPlayer>();
+        public static IchthyologyBestiary IchthyologyBestiary(this Player player) => player.GetModPlayer<IchthyologyBestiary>();
+        public static bool IchthyologySeaCreature(this NPC npc, out SeaCreature creature)
+        {
+            if (npc.TryGetGlobalNPC(out SeaCreature sc))
+            {
+                creature = sc;
+                return true;
+            }
+            else
+            {
+                creature = null;
+                return false;
+            }
+        }
         public static int Randomizer(int numToBeRandomized, int randomizeTo = 100)
         {
             if (randomizeTo < 0)
@@ -52,7 +64,7 @@ namespace Ichthyology.Systems
         {
             foreach (var item in ids)
             {
-                WeightedList.Add(item,weight);
+                WeightedList.Add(item, weight);
             }
             return WeightedList;
         }
