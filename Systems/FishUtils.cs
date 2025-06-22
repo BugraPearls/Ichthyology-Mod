@@ -88,6 +88,12 @@ namespace Ichthyology.Systems
             return WeightedList;
         }
 
+        /// <summary>
+        /// Adds given IDs to given List.
+        /// </summary>
+        /// <param name="AddToList"></param>
+        /// <param name="ids"></param>
+        /// <returns></returns>
         public static List<int> AddMultipleToList(List<int> AddToList, params int[] ids)
         {
             foreach(var item in ids)
