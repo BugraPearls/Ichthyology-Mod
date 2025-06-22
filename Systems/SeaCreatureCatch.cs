@@ -63,28 +63,30 @@ namespace Ichthyology.Systems
             }
             else if (attempt.inHoney) //Honey catches
             {
-
+                PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300,
+                    NPCID.Hornet,
+                    NPCID.Bee,
+                    NPCID.BeeSmall);
             }
             else //All Water catches
             {
                 //Blood Moon SC
                 if (Main.bloodMoon)
                 {
-                    if (!NPC.unlockedSlimeRedSpawn && Main.rand.Next(5) == 0)
+                    PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300,
+                            NPCID.ZombieMerman,
+                            NPCID.EyeballFlyingFish);
+
+                    if (!NPC.unlockedSlimeRedSpawn)
                     {
-                        fisher.rolledEnemySpawn = 682;
+                        PossibleMobSpawns.Add(NPCID.TownSlimeRed, 300);
                     }
                     else if (Main.hardMode)
                     {
-                        fisher.rolledEnemySpawn = Utils.SelectRandom(Main.rand, new short[4] { 620, 621, 586, 587 });
-                        if (Main.rand.Next(10) == 0)
-                        {
-                            fisher.rolledEnemySpawn = 618;
-                        }
-                    }
-                    else
-                    {
-                        fisher.rolledEnemySpawn = Utils.SelectRandom(Main.rand, new short[2] { 586, 587 });
+                        PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300,
+                            NPCID.BloodEelHead,
+                            NPCID.GoblinShark);
+                        PossibleMobSpawns.Add(NPCID.BloodNautilus, 120);
                     }
                 }
                 //Space SC
@@ -353,6 +355,8 @@ namespace Ichthyology.Systems
                     {
                         PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300,
                             NPCID.JungleCreeper,
+                            NPCID.Piranha);
+                        PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 50,
                             NPCID.Hornet,
                             NPCID.HornetFatty,
                             NPCID.HornetHoney,
@@ -372,8 +376,7 @@ namespace Ichthyology.Systems
                             NPCID.LittleHornetSpikey,
                             NPCID.LittleHornetStingy,
                             NPCID.LittleMossHornet,
-                            NPCID.MossHornet,
-                            NPCID.Piranha);
+                            NPCID.MossHornet);
                         if (Main.hardMode)
                         {
                             PossibleMobSpawns.Add(NPCID.Arapaima, 150);
