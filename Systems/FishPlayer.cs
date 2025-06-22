@@ -41,11 +41,11 @@ namespace Ichthyology.Systems
         /// <summary>
         /// Bonus damage dealt to Sea Creatures.
         /// </summary>
-        public float scBonusDamage = 1;
+        public float scBonusDamage = 0;
         /// <summary>
         /// Damage reduction towards Sea Creatures.
         /// </summary>
-        public float scDamageResist = 1;
+        public float scDamageResist = 0;
         /// <summary>
         /// Chance to throw out another bobber.
         /// </summary>
@@ -66,8 +66,8 @@ namespace Ichthyology.Systems
         {
             scChance = 0.1f;
             baitReserveChance = 0;
-            scBonusDamage = 1;
-            scDamageResist = 1;
+            scBonusDamage = 0;
+            scDamageResist = 0;
             doubleHookChance = 0;
             scLootIncrease = 0;
         }
@@ -148,7 +148,7 @@ namespace Ichthyology.Systems
         //todo: change type to netID bc not separate rn
         static void AddToBestiary(NPC npc, Player player)
         {
-            player.IchthyologyBestiary().AddToList(npc.type);
+            player.IchthyologyBestiary().AddToSCList(npc.type);
         }
 
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
@@ -166,7 +166,22 @@ namespace Ichthyology.Systems
         }
         public override void ModifyCaughtFish(Item fish)
         {
-            Main.NewText("hi!");
+            Player.IchthyologyBestiary().AddToCatchList(fish.type);
+        }
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            if (modifiers.DamageSource.TryGetCausingEntity(out Entity entity) && ((entity is Projectile proj && proj.IchthyologyProjectile(out IchthyologyGlobalProj global) && global.fromSC)
+                || (entity is NPC npc && npc.IchthyologySeaCreature(out SeaCreature sc) && sc.isASeaCreature)))
+            {
+                modifiers.FinalDamage *= 1 - scDamageResist;
+            }
+        }
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (target.IchthyologySeaCreature(out SeaCreature creature) && creature.isASeaCreature)
+            {
+                modifiers.FinalDamage *= 1 + scBonusDamage;
+            }
         }
     }
 }
