@@ -244,7 +244,8 @@ namespace Ichthyology.IDSets
             NPCID.BoneSerpentHead,
             NPCID.BoneSerpentTail,
             NPCID.Lavabat,
-            NPCID.RedDevil
+            NPCID.RedDevil,
+            NPCID.Skeleton
             );
 
         public static bool[] BloodMoonSC = NPCID.Sets.Factory.CreateNamedSet("BloodMoonSeaCreatures").Description("Enemies in this set are from the Blood Moon event when fishing").RegisterBoolSet(false,
@@ -284,6 +285,7 @@ namespace Ichthyology.IDSets
             NPCID.BoneSerpentTail,
             NPCID.Lavabat,
             NPCID.RedDevil,
+            NPCID.Skeleton,
             //Ocean SC
             NPCID.PinkJellyfish,
             NPCID.Crab,
