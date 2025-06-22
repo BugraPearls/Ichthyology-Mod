@@ -88,6 +88,15 @@ namespace Ichthyology.Systems
             return WeightedList;
         }
 
+        public static List<int> AddMultipleToList(List<int> AddToList, params int[] ids)
+        {
+            foreach(var item in ids)
+            {
+                AddToList.Add(item);
+            }
+            return AddToList;
+        }
+
         public static int FloatToIntegerPerc(float value)
         {
             return (int)Math.Round(value * 100,2);

@@ -109,7 +109,8 @@ namespace Ichthyology.IDSets
             ItemID.WormTooth,
             ItemID.VileMushroom,
             ItemID.RottenChunk,
-            ItemID.UnholyWater);
+            ItemID.UnholyWater,
+            ItemID.Blindfold);
 
         public static bool[] UndergroundCorruptionCatches = ItemID.Sets.Factory.CreateNamedSet("UndergroundCorruptionCatches").Description("Set of all the possible item catches in the Underground Corruption Biome").RegisterBoolSet(false,
             ItemID.CursedFlame,
@@ -123,7 +124,8 @@ namespace Ichthyology.IDSets
             ItemID.Vertebrae,
             ItemID.ViciousMushroom,
             ItemID.CrimsonKey,
-            ItemID.BloodWater);
+            ItemID.BloodWater,
+            ItemID.Blindfold);
 
         public static bool[] UndergroundCrimsonCatches = ItemID.Sets.Factory.CreateNamedSet("UndergroundCrimsonCatches").Description("Set of all the possible item catches in the Underground Crimson Biome").RegisterBoolSet(false,
             ItemID.Vertebrae,
@@ -181,6 +183,9 @@ namespace Ichthyology.IDSets
         public static bool[] HallowCatches = ItemID.Sets.Factory.CreateNamedSet("HallowCatches").Description("Set of all the possible item catches in the Hallowed Biome").RegisterBoolSet(false,
             ItemID.PixieDust,
             ItemID.UnicornHorn,
+            ItemID.FairyCritterBlue,
+            ItemID.FairyCritterGreen,
+            ItemID.FairyCritterPink,
             ItemID.BlessedApple,
             ItemID.HallowedKey,
             ItemID.Megaphone);
