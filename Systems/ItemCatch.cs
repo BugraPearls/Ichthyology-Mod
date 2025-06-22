@@ -27,6 +27,17 @@ namespace Ichthyology.Systems
             List<int> RareItems = new List<int>();
             List<int> VeryRareItems = new List<int>();
             List<int> LegendaryItems = new List<int>();
+
+            if (attempt.uncommon && player.IchthyologyPlayer().questFishCatchChance > Main.rand.NextFloat())
+            {
+                foreach (var item in ContentSamples.ItemsByType)
+                {
+                    if (item.Value.questItem && attempt.questFish == item.Key)
+                    {
+                        return item.Key;
+                    }
+                }
+            }
             //Space Items
             if (player.ZoneSkyHeight)
             {
