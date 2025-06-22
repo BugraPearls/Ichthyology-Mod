@@ -350,23 +350,23 @@ namespace Ichthyology.Systems
             }
 
             int catchRarity = -1;
-            if(attempt.common)
+            if(attempt.common && CommonItems.Count > 0)
             {
                 catchRarity = Main.rand.NextFromCollection(CommonItems);
             }
-            if(attempt.uncommon)
+            if(attempt.uncommon && UncommonItems.Count > 0)
             {
                 catchRarity = Main.rand.NextFromCollection(UncommonItems);
             }
-            if (attempt.rare)
+            if (attempt.rare && RareItems.Count > 0)
             {
                 catchRarity = Main.rand.NextFromCollection(RareItems);
             }
-            if (attempt.veryrare)
+            if (attempt.veryrare && VeryRareItems.Count > 0)
             {
                 catchRarity = Main.rand.NextFromCollection(VeryRareItems);
             }
-            if (attempt.legendary)
+            if (attempt.legendary && LegendaryItems.Count > 0)
             {
                 catchRarity = Main.rand.NextFromCollection(LegendaryItems);
             }

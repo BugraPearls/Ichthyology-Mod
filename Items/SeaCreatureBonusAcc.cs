@@ -15,7 +15,7 @@ namespace Ichthyology.Items
         {
             Item.DefaultToAccessory();
         }
-        public override void UpdateEquip(Player player)
+        public override void UpdateEquip(Player player) //TODO: OBVIOUSLY CHANGE THESE
         {
             player.IchthyologyPlayer().scBonusDamage += 2f;
             player.IchthyologyPlayer().scDamageResist += 0.8f;
