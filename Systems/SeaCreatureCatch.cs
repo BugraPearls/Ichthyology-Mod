@@ -349,6 +349,16 @@ namespace Ichthyology.Systems
                 PossibleMobSpawns.Add(NPCID.Squid, 50);
             }
 
+            else if (player.ZoneHallow)
+            {
+                PossibleMobSpawns.Add(NPCID.Pixie, 300);
+                PossibleMobSpawns.Add(NPCID.RainbowSlime, 50);
+                if(Main.dayTime == false)
+                {
+                    PossibleMobSpawns.Add(NPCID.Gastropod, 150);
+                }
+            }
+
             else if (attempt.inLava)
             {
                 PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 150,
@@ -367,7 +377,7 @@ namespace Ichthyology.Systems
                 PossibleMobSpawns.Add(NPCID.Mimic, 50);
                 if (player.ZoneUnderworldHeight)
                 {
-                    PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300, 
+                    PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300,
                         NPCID.Demon,
                         NPCID.LavaSlime,
                         NPCID.Hellbat);

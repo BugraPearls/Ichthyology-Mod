@@ -42,7 +42,8 @@ namespace Ichthyology.IDSets
             ItemID.Apricot,
             ItemID.Grapefruit,
             ItemID.Lemon,
-            ItemID.BlueBerries);
+            ItemID.BlueBerries,
+            ItemID.AdhesiveBandage);
 
         public static bool[] UndergroundCatches = ItemID.Sets.Factory.CreateNamedSet("UndergroundCatches").Description("Set of all the possible item catches in the Underground").RegisterBoolSet(false,
             ItemID.Gel,
@@ -59,7 +60,8 @@ namespace Ichthyology.IDSets
             ItemID.EnchantedSword,
             ItemID.Terragrim,
             ItemID.Arkhalis,
-            ItemID.ArmorPolish);
+            ItemID.ArmorPolish,
+            ItemID.PocketMirror);
 
         public static bool[] CavernCatches = ItemID.Sets.Factory.CreateNamedSet("CavernCatches").Description("Set of all the possible item catches in the Caverns").RegisterBoolSet(false,
             ItemID.FairyCritterBlue,
@@ -89,14 +91,15 @@ namespace Ichthyology.IDSets
         public static bool[] DesertCatches = ItemID.Sets.Factory.CreateNamedSet("DesertCatches").Description("Set of all the possible item catches in the Desert Biome").RegisterBoolSet(false,
             ItemID.SandBlock,
             ItemID.DungeonDesertKey,
-            ItemID.AncientBattleArmorMaterial);
+            ItemID.AncientBattleArmorMaterial,
+            ItemID.TrifoldMap);
 
         public static bool[] UndergroundDesertCatches = ItemID.Sets.Factory.CreateNamedSet("UndergroundDesertCatches").Description("Set of all the possible item catches in the Underground Desert Biome").RegisterBoolSet(false,
             ItemID.DungeonDesertKey,
             ItemID.HardenedSand,
             ItemID.AntlionMandible,
             ItemID.AncientCloth,
-            ItemID.Vitamins);
+            ItemID.FastClock);
 
         public static bool[] CorruptionCatches = ItemID.Sets.Factory.CreateNamedSet("CorruptionCatches").Description("Set of all the possible item catches in the Corruption Biome").RegisterBoolSet(false,
             ItemID.AncientShadowGreaves,
@@ -127,7 +130,8 @@ namespace Ichthyology.IDSets
             ItemID.Ichor,
             ItemID.CrimsonKey,
             ItemID.SoulofNight,
-            ItemID.BloodWater);
+            ItemID.BloodWater,
+            ItemID.Vitamins);
 
         public static bool[] JungleCatches = ItemID.Sets.Factory.CreateNamedSet("JungleCatches").Description("Set of all the possible item catches in the Jungle Biome").RegisterBoolSet(false,
             ItemID.Uzi,
@@ -135,7 +139,8 @@ namespace Ichthyology.IDSets
             ItemID.JungleKey,
             ItemID.Yelets,
             ItemID.Mango,
-            ItemID.Pineapple);
+            ItemID.Pineapple,
+            ItemID.Bezoar);
 
         public static bool[] UndergroundJungleCatces = ItemID.Sets.Factory.CreateNamedSet("UndergroundJungleCatches").Description("Set of all the possible item catches in the Underground Jungle Biome").RegisterBoolSet(false,
             ItemID.JungleKey,
@@ -156,7 +161,8 @@ namespace Ichthyology.IDSets
             ItemID.WispinaBottle,
             ItemID.MagnetSphere,
             ItemID.Kraken,
-            ItemID.MaceWhip);
+            ItemID.MaceWhip,
+            ItemID.Nazar);
 
         public static bool[] OceanCatches = ItemID.Sets.Factory.CreateNamedSet("OceanCatches").Description("Set of all the possible item catches in the Ocean Biome").RegisterBoolSet(false,
             ItemID.Seahorse,
@@ -171,5 +177,12 @@ namespace Ichthyology.IDSets
             ItemID.DivingHelmet,
             ItemID.Coconut,
             ItemID.Banana);
+
+        public static bool[] HallowCatches = ItemID.Sets.Factory.CreateNamedSet("HallowCatches").Description("Set of all the possible item catches in the Hallowed Biome").RegisterBoolSet(false,
+            ItemID.PixieDust,
+            ItemID.UnicornHorn,
+            ItemID.BlessedApple,
+            ItemID.HallowedKey,
+            ItemID.Megaphone);
     }
 }
