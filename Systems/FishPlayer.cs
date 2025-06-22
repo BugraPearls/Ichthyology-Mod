@@ -74,6 +74,7 @@ namespace Ichthyology.Systems
             scDamageResist = 0;
             doubleHookChance = 0;
             scLootIncrease = 0;
+            questFishCatchChance = 0.25f;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {
@@ -89,16 +90,7 @@ namespace Ichthyology.Systems
             OnSeaCreatureKilled += AddToBestiary;
             On_Player.ItemCheck_CheckFishingBobber_PullBobber += AdjustEnemySpawns;
             On_Projectile.FishingCheck_RollEnemySpawns += RevampVanillaSeaCreatureSystem;
-        }
-
-        private static void RevampVanillaSeaCreatureSystem(On_Projectile.orig_FishingCheck_RollEnemySpawns orig, Projectile self, ref FishingAttempt fisher)
-        {
-            Player plr = Main.player[self.owner];
-            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100)) == false)
-            {
-                return;
-            }
-            SeaCreatureCatch.CatchCreature(plr, fisher);
+            On_Projectile.FishingCheck_RollItemDrop += RevampVanillaItemDropSystem;
         }
         private static void AdjustEnemySpawns(On_Player.orig_ItemCheck_CheckFishingBobber_PullBobber orig, Player self, Projectile bobber, int baitTypeUsed)
         { //Same as vanilla method, except more clarified and check for LocalAI is checking if its not 0, rather than if above. Also adds point.Y -= 64 for WindyBalloon SC.
@@ -157,6 +149,24 @@ namespace Ichthyology.Systems
             }
             bobber.netUpdate = true;
         }
+        private static void RevampVanillaSeaCreatureSystem(On_Projectile.orig_FishingCheck_RollEnemySpawns orig, Projectile self, ref FishingAttempt fisher)
+        {
+            Player plr = Main.player[self.owner];
+            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100)) == false)
+            {
+                return;
+            }
+            fisher.rolledEnemySpawn = SeaCreatureCatch.CatchCreature(plr, fisher);
+        }
+        private void RevampVanillaItemDropSystem(On_Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
+        {
+            if (fisher.rolledEnemySpawn != 0)
+            {
+                return;
+            }
+            fisher.rolledItemDrop = ItemCatch.CatchItem(Main.player[self.owner], fisher);
+        }
+
         public override void Unload()
         {
             OnSeaCreatureKilled -= AddToBestiary;

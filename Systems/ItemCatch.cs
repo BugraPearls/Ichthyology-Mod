@@ -136,7 +136,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Snow Biome Items
-                else if (player.ZoneSnow)
+                else if (FishUtils.SnowBiomeVanillaRules(player))
                 {
                     if (!player.ZoneRockLayerHeight)
                     {
@@ -202,7 +202,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Corruption
-                else if (player.ZoneCorrupt)
+                else if (FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
                 {
                     if (NPC.downedPlantBoss)
                     {
@@ -239,7 +239,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Crimson Items
-                else if (player.ZoneCrimson)
+                else if (FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
                 {
                     if (NPC.downedPlantBoss)
                     {
@@ -271,7 +271,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Jungle Items
-                else if (player.ZoneJungle)
+                else if (FishUtils.JungleBiomeVanillaRules(player))
                 {
                     if (NPC.downedMechBossAny)
                     {
@@ -312,7 +312,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Dungeon Items
-                else if (player.ZoneDungeon)
+                else if (FishUtils.DungeonBiomeVanillaRules(player))
                 {
                     CommonItems.Add(ItemID.Bone);
                     UncommonItems.Add(ItemID.GoldenKey);

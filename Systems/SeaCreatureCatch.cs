@@ -166,7 +166,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Snow Biome SC
-                else if (player.ZoneSnow)
+                else if (FishUtils.SnowBiomeVanillaRules(player))
                 {
                     if (!player.ZoneRockLayerHeight)
                     {
@@ -188,11 +188,11 @@ namespace Ichthyology.Systems
                                 PossibleMobSpawns.Add(NPCID.IceElemental, 50);
                             }
                         }
-                        if ((Main.bloodMoon && Condition.CorruptWorld.IsMet()) || player.ZoneCorrupt)
+                        if ((Main.bloodMoon && Condition.CorruptWorld.IsMet()) || FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
                         {
                             PossibleMobSpawns.Add(NPCID.CorruptPenguin, 150);
                         }
-                        if ((Main.bloodMoon && Condition.CrimsonWorld.IsMet()) || player.ZoneCrimson)
+                        if ((Main.bloodMoon && Condition.CrimsonWorld.IsMet()) || FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
                         {
                             PossibleMobSpawns.Add(NPCID.CrimsonPenguin, 150);
                         }
@@ -213,11 +213,11 @@ namespace Ichthyology.Systems
                             {
                                 PossibleMobSpawns.Add(NPCID.PigronHallow, 50);
                             }
-                            else if (player.ZoneCorrupt)
+                            else if (FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
                             {
                                 PossibleMobSpawns.Add(NPCID.PigronCorruption, 50);
                             }
-                            else if (player.ZoneCrimson)
+                            else if (FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
                             {
                                 PossibleMobSpawns.Add(NPCID.PigronCrimson, 50);
                             }
@@ -237,11 +237,11 @@ namespace Ichthyology.Systems
                         {
                             PossibleMobSpawns.Add(NPCID.LightMummy, 50);
                         }
-                        else if (player.ZoneCorrupt)
+                        else if (FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
                         {
                             PossibleMobSpawns.Add(NPCID.DarkMummy, 50);
                         }
-                        else if (player.ZoneCrimson)
+                        else if (FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
                         {
                             PossibleMobSpawns.Add(NPCID.BloodMummy, 50);
                         }
@@ -261,7 +261,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Corruption SC
-                else if (player.ZoneCorrupt)
+                else if (FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
                 {
                     PossibleMobSpawns.Add(NPCID.DevourerHead, 150);
                     if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
@@ -297,7 +297,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Crimson SC
-                else if (player.ZoneCrimson)
+                else if (FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
                 {
                     if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
                     {
@@ -331,7 +331,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Jungle SC
-                else if (player.ZoneJungle)
+                else if (FishUtils.JungleBiomeVanillaRules(player))
                 {
                     if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
                     {
@@ -388,7 +388,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Dungeon SC
-                else if (player.ZoneDungeon)
+                else if (FishUtils.DungeonBiomeVanillaRules(player))
                 {
                     //insert custom enemy here
                     PossibleMobSpawns = FishUtils.AddToWeightedForSame(PossibleMobSpawns, 300,

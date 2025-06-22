@@ -107,5 +107,74 @@ namespace Ichthyology.Systems
         {
             return (int)Math.Round(value * 100,2);
         }
+        /// <summary>
+        /// Returns if according to vanilla rules, current biome is 'Corruption'. bobberHeightLevel should be FishingAttempt.heightLevel
+        /// </summary>
+        public static bool CorruptBiomeVanillaRules(Player plr, int bobberHeightLevel)
+        {
+            if (Main.remixWorld && bobberHeightLevel == 0)
+            {
+                return false;
+            }
+            if (plr.ZoneCorrupt && plr.ZoneCrimson)
+            {
+                if (Main.rand.NextBool())
+                {
+                    return false;
+                }
+            }
+            return plr.ZoneCorrupt;
+        }
+        /// <summary>
+        /// Returns if according to vanilla rules, current biome is 'Crimson'. bobberHeightLevel should be FishingAttempt.heightLevel
+        /// </summary>
+        public static bool CrimsonBiomeVanillaRules(Player plr, int bobberHeightLevel)
+        {
+            if (Main.remixWorld && bobberHeightLevel == 0)
+            {
+                return false;
+            }
+            if (plr.ZoneCorrupt && plr.ZoneCrimson)
+            {
+                if (Main.rand.NextBool())
+                {
+                    return false;
+                }
+            }
+            return plr.ZoneCrimson;
+        }
+        /// <summary>
+        /// Returns if according to vanilla rules, current biome is 'Snow'.
+        /// </summary>
+        public static bool SnowBiomeVanillaRules(Player plr)
+        {
+            if (plr.ZoneJungle && plr.ZoneSnow && Main.rand.NextBool())
+            {
+                return false;
+            }
+            return plr.ZoneSnow;
+        }
+        /// <summary>
+        /// Returns if according to vanilla rules, current biome is 'Dungeon'.
+        /// </summary>
+        public static bool DungeonBiomeVanillaRules(Player plr)
+        {
+            if (!NPC.downedBoss3)
+            {
+                return false;
+            }
+            return plr.ZoneDungeon;
+        }
+        /// <summary>
+        /// Returns if according to vanilla rules, current biome is 'Jungle'.
+        /// </summary>
+        public static bool JungleBiomeVanillaRules(Player plr)
+        {
+            if (Main.notTheBeesWorld && !Main.remixWorld && Main.rand.NextBool())
+            {
+                return false;
+            }
+            return plr.ZoneJungle;
+        }
     }
 }
