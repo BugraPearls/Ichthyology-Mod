@@ -63,9 +63,9 @@ namespace Ichthyology.Systems
         /// </summary>
         public bool displaySCC;
         /// <summary>
-        /// Used to revert an ID of an NPC spawn.
+        /// Items up to this price point can have their stack raised as they are caught up. Defaults to 10 silver.
         /// </summary>
-        public List<bool> queuedBoolsForNegatives = new();
+        public int costCapForStackRaise = 1000;
         public override void ResetEffects()
         {
             scChance = 0.1f;
@@ -75,6 +75,7 @@ namespace Ichthyology.Systems
             doubleHookChance = 0;
             scLootIncrease = 0;
             questFishCatchChance = 0.25f;
+            costCapForStackRaise = 1000;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {
@@ -151,16 +152,14 @@ namespace Ichthyology.Systems
         private static void RevampVanillaSeaCreatureSystem(On_Projectile.orig_FishingCheck_RollEnemySpawns orig, Projectile self, ref FishingAttempt fisher)
         {
             Player plr = Main.player[self.owner];
-            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100),100))
+            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100), 100))
             {
                 int id = SeaCreatureCatch.CatchCreature(plr, fisher);
-                Main.NewText(id);
                 if (id < 0)
                 {
                     self.GetGlobalProjectile<BobberGlobal>().spawningIntIsNegative = true;
                     id *= -1;
                 }
-                Main.NewText(id);
                 fisher.rolledEnemySpawn = id;
             }
         }
@@ -182,31 +181,6 @@ namespace Ichthyology.Systems
         {
             player.IchthyologyBestiary().AddToSCList(npc.type);
         }
-        //public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
-        //{
-        //    if (npcSpawn == 0 && Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(scChance), 100), 100))
-        //    {
-        //        int id = SeaCreatureCatch.CatchCreature(Player, attempt); //This is where its determined which Mob out of all on the Weighted list spawns.
-        //        if (id < 0)
-        //        {
-        //            id *= -1;
-        //            npcSpawn = id;
-        //        }
-        //        else if (id > 0)
-        //        {
-        //            npcSpawn = id;
-        //        }
-        //    }
-        //    else if (Main.rand.NextBool()) //50% chance to override regular catches, if the catch is not a SC
-        //    {
-        //        int id = ItemCatch.CatchItem(Player, attempt);
-        //        if (id < 0)
-        //        {
-        //            return;
-        //        }
-        //        itemDrop = id;
-        //    }
-        //}
         public override void ModifyFishingAttempt(ref FishingAttempt attempt)
         {
             if (attempt.playerFishingConditions.PoleItemType == ItemID.BloodFishingRod)
@@ -218,8 +192,19 @@ namespace Ichthyology.Systems
         {
             Player.IchthyologyBestiary().AddToCatchList(fish.type);
 
-
-            Main.NewText(Math.Log(fish.value));
+            if (fish.maxStack > 1) //Here, depending on item's price, increases the stack.
+            {
+                int stackRaise = 1;
+                double value = costCapForStackRaise - fish.value; //10 silver cap to possibly raise the stack.
+                if (value > 0)
+                {
+                    for (int i = 0; i < FishUtils.Randomizer((int)Math.Round(Math.Log(value * Main.rand.Next(100)) * 100)); i++) //Main.rand here makes it have some random element to it, and won't be as high due to logarithm.
+                    {
+                        stackRaise++;
+                    }
+                    fish.stack *= stackRaise;
+                }
+            }
         }
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
@@ -257,6 +242,9 @@ namespace Ichthyology.Systems
             return null;
         }
     }
+    /// <summary>
+    /// Used to pass through data that current spawning NPC is an negative ID'd NPC.
+    /// </summary>
     public class BobberGlobal : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
