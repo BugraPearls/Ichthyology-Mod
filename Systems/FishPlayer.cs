@@ -162,6 +162,7 @@ namespace Ichthyology.Systems
                 }
                 npcSpawn = id;
             }
+            if (ItemCatch.CatchItem())
         }
         public override void ModifyCaughtFish(Item fish)
         {

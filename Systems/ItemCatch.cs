@@ -20,7 +20,7 @@ namespace Ichthyology.Systems
         /// </summary>
         /// <param name="player"></param>
         /// <param name="attempt"></param>
-        public static void CatchItem(Player player, FishingAttempt attempt)
+        public static int CatchItem(Player player, FishingAttempt attempt)
         {
             List<int> CommonItems = new List<int>();
             List<int> UncommonItems = new List<int>();
@@ -348,6 +348,31 @@ namespace Ichthyology.Systems
                         ItemID.ObsidianRose);
                 }
             }
+
+            int catchRarity = -1;
+            if(attempt.common)
+            {
+                catchRarity = Main.rand.NextFromCollection(CommonItems);
+            }
+            if(attempt.uncommon)
+            {
+                catchRarity = Main.rand.NextFromCollection(UncommonItems);
+            }
+            if (attempt.rare)
+            {
+                catchRarity = Main.rand.NextFromCollection(RareItems);
+            }
+            if (attempt.veryrare)
+            {
+                catchRarity = Main.rand.NextFromCollection(VeryRareItems);
+            }
+            if (attempt.legendary)
+            {
+                catchRarity = Main.rand.NextFromCollection(LegendaryItems);
+            }
+
+            return catchRarity;
+                
         }
     }
 }
