@@ -20,6 +20,7 @@ namespace Ichthyology.Items
             player.IchthyologyPlayer().scBonusDamage += 2f;
             player.IchthyologyPlayer().scDamageResist += 0.8f;
             player.IchthyologyPlayer().doubleHookChance += 1.5f;
+            player.IchthyologyPlayer().baitReserveChance += 2f;
         }
     }
 }

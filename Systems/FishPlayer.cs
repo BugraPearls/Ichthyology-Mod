@@ -152,7 +152,7 @@ namespace Ichthyology.Systems
         }
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
-            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(scChance), 100), 100))
+            if (npcSpawn == 0 && Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(scChance), 100), 100))
             {
                 int id = SeaCreatureCatch.CatchCreature(Player, attempt); //This is where its determined which Mob out of all on the Weighted list spawns.
                 if (id < 0)
@@ -189,10 +189,18 @@ namespace Ichthyology.Systems
                 for (int i = 0; i < FishUtils.Randomizer(FishUtils.FloatToIntegerPerc(doubleHookChance)); i++)
                 {
                     Vector2 bobberSpeed = velocity + new Vector2(Main.rand.NextFloat(-50f, 50f) * 0.05f, Main.rand.NextFloat(-50f, 50f) * 0.05f);
-                    Projectile.NewProjectileDirect(source, position, bobberSpeed, ProjectileID.FishingBobber, 0, 0f, Player.whoAmI);
+                    Projectile.NewProjectileDirect(source, position, bobberSpeed, item.shoot, 0, 0f, Player.whoAmI);
                 }
             }
             return base.Shoot(item, source, position, velocity, type, damage, knockback);
+        }
+        public override bool? CanConsumeBait(Item bait)
+        {
+            if (baitReserveChance > Main.rand.NextFloat())
+            {
+                return false;
+            }
+            return null;
         }
     }
 }
