@@ -55,13 +55,17 @@ namespace Ichthyology.Systems
         /// </summary>
         public float scLootIncrease = 0;
         /// <summary>
+        /// Chance to catch quest fish IF the given catch can be a uncommon catch.
+        /// </summary>
+        public float questFishCatchChance = 0.25f;
+        /// <summary>
         /// Whether or not SCC to be displayed.
         /// </summary>
         public bool displaySCC;
         /// <summary>
         /// Used to revert an ID of an NPC spawn.
         /// </summary>
-        public bool nextCatchIsNegativeId = false;
+        public List<bool> queuedBoolsForNegatives = new();
         public override void ResetEffects()
         {
             scChance = 0.1f;
@@ -84,6 +88,17 @@ namespace Ichthyology.Systems
         {
             OnSeaCreatureKilled += AddToBestiary;
             On_Player.ItemCheck_CheckFishingBobber_PullBobber += AdjustEnemySpawns;
+            On_Projectile.FishingCheck_RollEnemySpawns += RevampVanillaSeaCreatureSystem;
+        }
+
+        private static void RevampVanillaSeaCreatureSystem(On_Projectile.orig_FishingCheck_RollEnemySpawns orig, Projectile self, ref FishingAttempt fisher)
+        {
+            Player plr = Main.player[self.owner];
+            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100)) == false)
+            {
+                return;
+            }
+            SeaCreatureCatch.CatchCreature(plr, fisher);
         }
         private static void AdjustEnemySpawns(On_Player.orig_ItemCheck_CheckFishingBobber_PullBobber orig, Player self, Projectile bobber, int baitTypeUsed)
         { //Same as vanilla method, except more clarified and check for LocalAI is checking if its not 0, rather than if above. Also adds point.Y -= 64 for WindyBalloon SC.
@@ -111,10 +126,11 @@ namespace Ichthyology.Systems
                 {
                     point.Y -= 64;
                 }
-                if (self.IchthyologyPlayer().nextCatchIsNegativeId)
+                Main.NewText(self.IchthyologyPlayer().queuedBoolsForNegatives.Count);
+                if (self.IchthyologyPlayer().queuedBoolsForNegatives.Count > 0 && self.IchthyologyPlayer().queuedBoolsForNegatives.First())
                 {
                     enemyID *= -1;
-                    self.IchthyologyPlayer().nextCatchIsNegativeId = false;
+                    self.IchthyologyPlayer().queuedBoolsForNegatives.RemoveAt(0);
                 }
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -158,15 +174,38 @@ namespace Ichthyology.Systems
                 if (id < 0)
                 {
                     id *= -1;
-                    nextCatchIsNegativeId = true;
+                    queuedBoolsForNegatives.Add(true);
+                    npcSpawn = id;
                 }
-                npcSpawn = id;
+                else if (id > 0)
+                {
+                    queuedBoolsForNegatives.Add(false);
+                    npcSpawn = id;
+                }
             }
-            if (ItemCatch.CatchItem())
+            else if (Main.rand.NextBool()) //50% chance to override regular catches, if the catch is not a SC
+            {
+                int id = ItemCatch.CatchItem(Player, attempt);
+                if (id < 0)
+                {
+                    return;
+                }
+                itemDrop = id;
+            }
+        }
+        public override void ModifyFishingAttempt(ref FishingAttempt attempt)
+        {
+            if (attempt.playerFishingConditions.PoleItemType == ItemID.BloodFishingRod)
+            {
+                scChance += 30;
+            }
         }
         public override void ModifyCaughtFish(Item fish)
         {
             Player.IchthyologyBestiary().AddToCatchList(fish.type);
+
+
+            Main.NewText(Math.Log(fish.value));
         }
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
