@@ -23,6 +23,19 @@ namespace Ichthyology.Systems
         }
         public static FishPlayer IchthyologyPlayer(this Player player) => player.GetModPlayer<FishPlayer>();
         public static IchthyologyBestiary IchthyologyBestiary(this Player player) => player.GetModPlayer<IchthyologyBestiary>();
+        public static bool IchthyologyProjectile(this Projectile proj, out IchthyologyGlobalProj globalProj)
+        {
+            if (proj.TryGetGlobalProjectile(out IchthyologyGlobalProj gp))
+            {
+                globalProj = gp;
+                return true;
+            }
+            else
+            {
+                globalProj = null;
+                return false;
+            }
+        }
         public static bool IchthyologySeaCreature(this NPC npc, out SeaCreature creature)
         {
             if (npc.TryGetGlobalNPC(out SeaCreature sc))
