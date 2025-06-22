@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Systems
@@ -17,15 +18,32 @@ namespace Ichthyology.Systems
         public override bool InstancePerEntity => true;
         public bool isASeaCreature = false;
         public int fisherWhoAmI = -1;
+        public bool ranTheScBuffs = false;
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {
             return SeaCreatureIDSets.AllSC[entity.type];
+        }
+        public void BuffSeaCreature(NPC entity)
+        {
+            if (ranTheScBuffs == false && SeaCreatureIDSets.BloodMoonSC[entity.type] == false) //SC's move 3x faster in liquids, immune to lava, and have 50% more stats. Excludes Blood Moon SC enemies.
+            {
+                entity.waterMovementSpeed *= 3;
+                entity.lavaMovementSpeed *= 3;
+                entity.honeyMovementSpeed *= 3;
+
+                entity.lavaImmune = true;
+                entity.ScaleStats_UseStrengthMultiplier(1.5f);
+                entity.life = entity.lifeMax;
+
+                ranTheScBuffs = true;
+            }
         }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             if (source is EntitySource_FishedOut fisherman)
             {
                 isASeaCreature = true;
+                BuffSeaCreature(npc);
                 if (fisherman.Fisher is Player fisher)
                 {
                     fisherWhoAmI = fisher.whoAmI;
@@ -64,7 +82,7 @@ namespace Ichthyology.Systems
                 int oldDenominator = drop.chanceDenominator;
                 int stackMult = FishUtils.Randomizer(100 + FishUtils.FloatToIntegerPerc(excessAmount));
 
-                drop.chanceNumerator = Math.Min((int)Math.Round(currentChance * 1000),1000);
+                drop.chanceNumerator = Math.Min((int)Math.Round(currentChance * 1000), 1000);
                 drop.chanceDenominator = 1000;
                 drop.amountDroppedMaximum *= stackMult;
                 drop.amountDroppedMinimum *= stackMult;
