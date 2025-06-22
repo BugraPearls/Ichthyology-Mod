@@ -49,6 +49,12 @@ namespace Ichthyology.Systems
                 return false;
             }
         }
+        /// <summary>
+        /// Returns how many times a % chance returns 'true'. Input numToBeRandomized as how the % should be written out, ex. 150% should be Randomizer(150), which will return 1 + 1 with 50% chance. Suggested to use with a for.
+        /// </summary>
+        /// <param name="numToBeRandomized"></param>
+        /// <param name="randomizeTo"></param>
+        /// <returns></returns>
         public static int Randomizer(int numToBeRandomized, int randomizeTo = 100)
         {
             if (randomizeTo < 0)
