@@ -12,7 +12,7 @@ using Terraria.Utilities;
 
 namespace Ichthyology.Systems
 {
-    public static class Utils
+    public static class FishUtils
     {
         /// <summary>
         /// Used as Utils.LocVal("type your given value in Localization after Mods.Ichthyology.")

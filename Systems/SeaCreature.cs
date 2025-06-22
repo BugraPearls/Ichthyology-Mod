@@ -61,7 +61,7 @@ namespace Ichthyology.Systems
 
                 int oldNumerator = drop.chanceNumerator;
                 int oldDenominator = drop.chanceDenominator;
-                int stackMult = Utils.Randomizer(100 + (int)Math.Round(excessAmount * 100));
+                int stackMult = FishUtils.Randomizer(100 + (int)Math.Round(excessAmount * 100));
 
                 drop.chanceNumerator = Math.Min((int)Math.Round(currentChance * 1000),1000);
                 drop.chanceDenominator = 1000;

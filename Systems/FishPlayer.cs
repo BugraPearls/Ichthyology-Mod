@@ -183,5 +183,17 @@ namespace Ichthyology.Systems
                 modifiers.FinalDamage *= 1 + scBonusDamage;
             }
         }
+        public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (item.fishingPole > 0)
+            {
+                for (int i = 0; i < FishUtils.Randomizer(bobberChance); i++)
+                {
+                    Vector2 bobberSpeed = velocity + new Vector2(Main.rand.NextFloat(-50f, 50f) * 0.05f, Main.rand.NextFloat(-50f, 50f) * 0.05f);
+                    Projectile petProjectile = Projectile.NewProjectileDirect(source, position, bobberSpeed, ProjectileID.FishingBobber, 0, 0f, Player.whoAmI);
+                }
+            }
+            return base.Shoot(item, source, position, velocity, type, damage, knockback);
+        }
     }
 }
