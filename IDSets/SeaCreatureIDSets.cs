@@ -256,6 +256,11 @@ namespace Ichthyology.IDSets
             NPCID.BloodEelTail,
             NPCID.BloodNautilus);
 
+        public static bool[] HallowSC = NPCID.Sets.Factory.CreateNamedSet("HallowSeaCreatures").Description("Enemies in this set can be caught when fishing in the Hallow").RegisterBoolSet(false,
+            NPCID.Pixie,
+            NPCID.RainbowSlime,
+            NPCID.Gastropod);
+
         public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("AllSeaCreatures").Description("Set of all Sea Creatures").RegisterBoolSet(false,
             //Lava SC
             NPCID.BlueArmoredBones,
@@ -442,7 +447,11 @@ namespace Ichthyology.IDSets
             NPCID.BloodEelHead,
             NPCID.BloodEelBody,
             NPCID.BloodEelTail,
-            NPCID.BloodNautilus
+            NPCID.BloodNautilus,
+            //Hallow
+            NPCID.Pixie,
+            NPCID.RainbowSlime,
+            NPCID.Gastropod
             );
     }
 }
