@@ -110,6 +110,11 @@ namespace Ichthyology.Systems
             {
                 Point point = new((int)bobber.position.X, (int)bobber.position.Y);
                 int enemyID = (int)(0f - bobber.localAI[1]);
+                if (bobber.TryGetGlobalProjectile(out BobberGlobal bobberGlobal) && bobberGlobal.spawningIntIsNegative)
+                {
+                    enemyID *= -1;
+                    bobberGlobal.spawningIntIsNegative = false;
+                }
                 if (enemyID == NPCID.BloodNautilus)
                 {
                     point.Y += 64;
@@ -117,12 +122,6 @@ namespace Ichthyology.Systems
                 if (enemyID == NPCID.WindyBalloon)
                 {
                     point.Y -= 64;
-                }
-                Main.NewText(self.IchthyologyPlayer().queuedBoolsForNegatives.Count);
-                if (self.IchthyologyPlayer().queuedBoolsForNegatives.Count > 0 && self.IchthyologyPlayer().queuedBoolsForNegatives.First())
-                {
-                    enemyID *= -1;
-                    self.IchthyologyPlayer().queuedBoolsForNegatives.RemoveAt(0);
                 }
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -152,11 +151,18 @@ namespace Ichthyology.Systems
         private static void RevampVanillaSeaCreatureSystem(On_Projectile.orig_FishingCheck_RollEnemySpawns orig, Projectile self, ref FishingAttempt fisher)
         {
             Player plr = Main.player[self.owner];
-            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100)) == false)
+            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(plr.IchthyologyPlayer().scChance), 100),100))
             {
-                return;
+                int id = SeaCreatureCatch.CatchCreature(plr, fisher);
+                Main.NewText(id);
+                if (id < 0)
+                {
+                    self.GetGlobalProjectile<BobberGlobal>().spawningIntIsNegative = true;
+                    id *= -1;
+                }
+                Main.NewText(id);
+                fisher.rolledEnemySpawn = id;
             }
-            fisher.rolledEnemySpawn = SeaCreatureCatch.CatchCreature(plr, fisher);
         }
         private void RevampVanillaItemDropSystem(On_Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
         {
@@ -176,33 +182,31 @@ namespace Ichthyology.Systems
         {
             player.IchthyologyBestiary().AddToSCList(npc.type);
         }
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
-        {
-            if (npcSpawn == 0 && Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(scChance), 100), 100))
-            {
-                int id = SeaCreatureCatch.CatchCreature(Player, attempt); //This is where its determined which Mob out of all on the Weighted list spawns.
-                if (id < 0)
-                {
-                    id *= -1;
-                    queuedBoolsForNegatives.Add(true);
-                    npcSpawn = id;
-                }
-                else if (id > 0)
-                {
-                    queuedBoolsForNegatives.Add(false);
-                    npcSpawn = id;
-                }
-            }
-            else if (Main.rand.NextBool()) //50% chance to override regular catches, if the catch is not a SC
-            {
-                int id = ItemCatch.CatchItem(Player, attempt);
-                if (id < 0)
-                {
-                    return;
-                }
-                itemDrop = id;
-            }
-        }
+        //public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        //{
+        //    if (npcSpawn == 0 && Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(scChance), 100), 100))
+        //    {
+        //        int id = SeaCreatureCatch.CatchCreature(Player, attempt); //This is where its determined which Mob out of all on the Weighted list spawns.
+        //        if (id < 0)
+        //        {
+        //            id *= -1;
+        //            npcSpawn = id;
+        //        }
+        //        else if (id > 0)
+        //        {
+        //            npcSpawn = id;
+        //        }
+        //    }
+        //    else if (Main.rand.NextBool()) //50% chance to override regular catches, if the catch is not a SC
+        //    {
+        //        int id = ItemCatch.CatchItem(Player, attempt);
+        //        if (id < 0)
+        //        {
+        //            return;
+        //        }
+        //        itemDrop = id;
+        //    }
+        //}
         public override void ModifyFishingAttempt(ref FishingAttempt attempt)
         {
             if (attempt.playerFishingConditions.PoleItemType == ItemID.BloodFishingRod)
@@ -251,6 +255,15 @@ namespace Ichthyology.Systems
                 return false;
             }
             return null;
+        }
+    }
+    public class BobberGlobal : GlobalProjectile
+    {
+        public override bool InstancePerEntity => true;
+        public bool spawningIntIsNegative = false;
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            return entity.bobber;
         }
     }
 }
