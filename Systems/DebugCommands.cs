@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Ichthyology.Systems
 {
-    public class DebugCommands : ModCommand
+    public class SeaCreatureListCheck : ModCommand
     {
         public override CommandType Type => CommandType.Chat;
         public override string Command => "sc";
@@ -18,6 +18,18 @@ namespace Ichthyology.Systems
             foreach (int item in caller.Player.GetModPlayer<IchthyologyBestiary>().KilledSeaCreatures)
             {
                 Main.NewText(ContentSamples.NpcPersistentIdsByNetIds[item]);
+            }
+        }
+    }
+    public class CatchListCheck : ModCommand
+    {
+        public override CommandType Type => CommandType.Chat;
+        public override string Command => "catch";
+        public override void Action(CommandCaller caller, string input, string[] args)
+        {
+            foreach (int item in caller.Player.GetModPlayer<IchthyologyBestiary>().CaughtFishingDrops)
+            {
+                Main.NewText(ContentSamples.ItemsByType[item]);
             }
         }
     }

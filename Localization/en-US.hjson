@@ -33,6 +33,11 @@ Mods: {
 				DisplayName: Ichthyological Sonar
 				Tooltip: ""
 			}
+
+			SeaCreatureBonusAcc: {
+				DisplayName: Sea Creature Bonus Acc
+				Tooltip: ""
+			}
 		}
 	}
 }
