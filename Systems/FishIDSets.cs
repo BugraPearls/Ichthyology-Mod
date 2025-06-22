@@ -13,7 +13,8 @@ namespace Ichthyology.Systems
             NPCID.WyvernBody3,
             NPCID.WyvernTail,
             NPCID.WyvernLegs,
-            NPCID.FlyingFish
+            NPCID.FlyingFish,
+            NPCID.WindyBalloon
             //Custom Enemy goes here
             );
 
@@ -422,7 +423,8 @@ namespace Ichthyology.Systems
             NPCID.WyvernBody3,
             NPCID.WyvernTail,
             NPCID.WyvernLegs,
-            NPCID.FlyingFish
+            NPCID.FlyingFish,
+            NPCID.WindyBalloon
             //Custom Space Enemy
             );
 

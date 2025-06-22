@@ -26,6 +26,7 @@ namespace Ichthyology.Systems
             //Space SC
             if (player.ZoneSkyHeight)
             {
+                PossibleMobSpawns.Add(NPCID.WindyBalloon, 300);
                 PossibleMobSpawns.Add(NPCID.FlyingFish, 300);
                 //insert custom mob here, weight will be 100
                 if (Main.hardMode)
