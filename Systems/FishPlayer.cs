@@ -153,7 +153,7 @@ namespace Ichthyology.Systems
 
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
-            if (Main.rand.NextBool(Math.Min((int)Math.Round(scChance * 100), 100), 100))
+            if (Main.rand.NextBool(Math.Min(FishUtils.FloatToIntegerPerc(scChance), 100), 100))
             {
                 int id = SeaCreatureCatch.CatchCreature(Player, attempt); //This is where its determined which Mob out of all on the Weighted list spawns.
                 if (id < 0)
@@ -187,7 +187,7 @@ namespace Ichthyology.Systems
         {
             if (item.fishingPole > 0)
             {
-                for (int i = 0; i < FishUtils.Randomizer(bobberChance); i++)
+                for (int i = 0; i < FishUtils.Randomizer(FishUtils.FloatToIntegerPerc(doubleHookChance)); i++)
                 {
                     Vector2 bobberSpeed = velocity + new Vector2(Main.rand.NextFloat(-50f, 50f) * 0.05f, Main.rand.NextFloat(-50f, 50f) * 0.05f);
                     Projectile petProjectile = Projectile.NewProjectileDirect(source, position, bobberSpeed, ProjectileID.FishingBobber, 0, 0f, Player.whoAmI);

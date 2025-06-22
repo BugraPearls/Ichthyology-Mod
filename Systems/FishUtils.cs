@@ -81,5 +81,10 @@ namespace Ichthyology.Systems
             }
             return WeightedList;
         }
+
+        public static int FloatToIntegerPerc(float value)
+        {
+            return (int)Math.Round(value * 100,2);
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Ichthyology.Displays
         }
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
-            return Math.Round(Main.LocalPlayer.IchthyologyPlayer().scChance * 100, 2).ToString() + CurrentSCCText;
+            return FishUtils.FloatToIntegerPerc(Main.LocalPlayer.IchthyologyPlayer().scChance).ToString() + CurrentSCCText;
         }
 
         public override bool Active()

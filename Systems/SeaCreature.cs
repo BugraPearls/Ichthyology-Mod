@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ichthyology.IDSets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Ichthyology.Systems
         public int fisherWhoAmI = -1;
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {
-            return FishIDSets.AllSC[entity.type];
+            return SeaCreatureIDSets.AllSC[entity.type];
         }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
@@ -61,7 +62,7 @@ namespace Ichthyology.Systems
 
                 int oldNumerator = drop.chanceNumerator;
                 int oldDenominator = drop.chanceDenominator;
-                int stackMult = FishUtils.Randomizer(100 + (int)Math.Round(excessAmount * 100));
+                int stackMult = FishUtils.Randomizer(100 + FishUtils.FloatToIntegerPerc(excessAmount));
 
                 drop.chanceNumerator = Math.Min((int)Math.Round(currentChance * 1000),1000);
                 drop.chanceDenominator = 1000;
