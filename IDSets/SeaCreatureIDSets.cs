@@ -1,10 +1,10 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Ichthyology.Systems
+namespace Ichthyology.IDSets
 {
     [ReinitializeDuringResizeArrays]
-    public static class FishIDSets
+    public static class SeaCreatureIDSets
     {
         public static bool[] SpaceSC = NPCID.Sets.Factory.CreateNamedSet("SpaceSeaCreatures").Description("Enemies in this set can be caught when fishing in the Space Biome.").RegisterBoolSet(false,
             NPCID.WyvernHead,
@@ -247,6 +247,15 @@ namespace Ichthyology.Systems
             NPCID.RedDevil
             );
 
+        public static bool[] BloodMoonSC = NPCID.Sets.Factory.CreateNamedSet("BloodMoonSeaCreatures").Description("Enemies in this set are from the Blood Moon event when fishing").RegisterBoolSet(false,
+            NPCID.EyeballFlyingFish,
+            NPCID.ZombieMerman,
+            NPCID.GoblinShark,
+            NPCID.BloodEelHead,
+            NPCID.BloodEelBody,
+            NPCID.BloodEelTail,
+            NPCID.BloodNautilus);
+
         public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("AllSeaCreatures").Description("Set of all Sea Creatures").RegisterBoolSet(false,
             //Lava SC
             NPCID.BlueArmoredBones,
@@ -424,24 +433,16 @@ namespace Ichthyology.Systems
             NPCID.WyvernTail,
             NPCID.WyvernLegs,
             NPCID.FlyingFish,
-            NPCID.WindyBalloon
+            NPCID.WindyBalloon,
             //Custom Space Enemy
-            );
-
-        public static bool[] GoldCritters = ItemID.Sets.Factory.CreateNamedSet("AllGoldenCritters").Description("Set of all Golden Critters").RegisterBoolSet(false,
-            ItemID.GoldBird,
-            ItemID.GoldBunny,
-            ItemID.GoldButterfly,
-            ItemID.GoldDragonfly,
-            ItemID.GoldFrog,
-            ItemID.GoldGoldfish,
-            ItemID.GoldGrasshopper,
-            ItemID.GoldLadyBug,
-            ItemID.GoldMouse,
-            ItemID.GoldSeahorse,
-            ItemID.SquirrelGold,
-            ItemID.GoldWaterStrider,
-            ItemID.GoldWorm
+            //Blood Moon
+            NPCID.EyeballFlyingFish,
+            NPCID.ZombieMerman,
+            NPCID.GoblinShark,
+            NPCID.BloodEelHead,
+            NPCID.BloodEelBody,
+            NPCID.BloodEelTail,
+            NPCID.BloodNautilus
             );
     }
 }
