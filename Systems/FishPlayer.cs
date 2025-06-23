@@ -68,6 +68,7 @@ namespace Ichthyology.Systems
         public bool displaySCC;
         public bool GoldenCage = false;
         public bool TwinHook = false;
+        public bool MagnetHook = false;
         public override void ResetEffects()
         {
             scChance = 0.1f;
@@ -80,6 +81,7 @@ namespace Ichthyology.Systems
             costCapForStackRaise = 1000;
             GoldenCage = false; 
             TwinHook = false;
+            MagnetHook = false;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {

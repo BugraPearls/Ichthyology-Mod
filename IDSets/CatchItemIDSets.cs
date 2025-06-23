@@ -44,7 +44,7 @@ namespace Ichthyology.IDSets
             ItemID.Grapefruit,
             ItemID.Lemon,
             ItemID.BlueBerries,
-            ItemID.AdhesiveBandage 
+            ItemID.AdhesiveBandage
         };
 
         public static int[] UndergroundCatches = {
@@ -63,7 +63,7 @@ namespace Ichthyology.IDSets
             ItemID.Terragrim,
             ItemID.Arkhalis,
             ItemID.ArmorPolish,
-            ItemID.PocketMirror 
+            ItemID.PocketMirror
         };
 
         public static int[] CavernCatches = {
@@ -75,7 +75,7 @@ namespace Ichthyology.IDSets
             ItemID.Arkhalis,
             ItemID.Rally,
             ItemID.StoneBlock,
-            ItemID.LavaCharm 
+            ItemID.LavaCharm
         };
 
         public static int[] SnowCatches = {
@@ -84,21 +84,21 @@ namespace Ichthyology.IDSets
             ItemID.EskimoCoat,
             ItemID.EskimoHood,
             ItemID.EskimoPants,
-            ItemID.IceBlock 
+            ItemID.IceBlock
         };
 
         public static int[] IceCatches = {
             ItemID.FrozenKey,
             ItemID.Amarok,
             ItemID.FlinxFur,
-            ItemID.IceBlock 
+            ItemID.IceBlock
         };
 
         public static int[] DesertCatches = {
             ItemID.SandBlock,
             ItemID.DungeonDesertKey,
             ItemID.AncientBattleArmorMaterial,
-            ItemID.TrifoldMap 
+            ItemID.TrifoldMap
         };
 
         public static int[] UndergroundDesertCatches = {
@@ -106,7 +106,7 @@ namespace Ichthyology.IDSets
             ItemID.HardenedSand,
             ItemID.AntlionMandible,
             ItemID.AncientCloth,
-            ItemID.FastClock 
+            ItemID.FastClock
         };
 
         public static int[] CorruptionCatches = {
@@ -118,7 +118,7 @@ namespace Ichthyology.IDSets
             ItemID.VileMushroom,
             ItemID.RottenChunk,
             ItemID.UnholyWater,
-            ItemID.Blindfold 
+            ItemID.Blindfold
         };
 
         public static int[] UndergroundCorruptionCatches = {
@@ -127,7 +127,7 @@ namespace Ichthyology.IDSets
             ItemID.SoulofNight,
             ItemID.UnholyWater,
             ItemID.RottenChunk,
-            ItemID.Vitamins 
+            ItemID.Vitamins
         };
 
         public static int[] CrimsonCatches = {
@@ -143,7 +143,7 @@ namespace Ichthyology.IDSets
             ItemID.CrimsonKey,
             ItemID.SoulofNight,
             ItemID.BloodWater,
-            ItemID.Vitamins 
+            ItemID.Vitamins
         };
 
         public static int[] JungleCatches = {
@@ -153,7 +153,7 @@ namespace Ichthyology.IDSets
             ItemID.Yelets,
             ItemID.Mango,
             ItemID.Pineapple,
-            ItemID.Bezoar 
+            ItemID.Bezoar
         };
 
         public static int[] UndergroundJungleCatces = {
@@ -164,7 +164,7 @@ namespace Ichthyology.IDSets
             ItemID.TurtleShell,
             ItemID.JungleSpores,
             ItemID.NaturesGift,
-            ItemID.JungleRose 
+            ItemID.JungleRose
         };
 
         public static int[] DungeonCatches = {
@@ -195,7 +195,7 @@ namespace Ichthyology.IDSets
             ItemID.Coconut,
             ItemID.Banana
         };
-            
+
         public static int[] HallowCatches = {
             ItemID.PixieDust,
             ItemID.UnicornHorn,
@@ -204,7 +204,23 @@ namespace Ichthyology.IDSets
             ItemID.FairyCritterPink,
             ItemID.BlessedApple,
             ItemID.HallowedKey,
-            ItemID.Megaphone 
+            ItemID.Megaphone
+        };
+
+        public static int[] HoneyCatches = {
+            ItemID.HoneyBlock,
+            ItemID.BottledHoney
+        };
+
+        public static int[] OreCatches = {
+            ItemID.CopperOre, 
+            ItemID.TinOre,
+            ItemID.IronOre,
+            ItemID.LeadOre,
+            ItemID.SilverOre,
+            ItemID.TungstenOre,
+            ItemID.GoldOre,
+            ItemID.PlatinumOre
         };
     }
 }

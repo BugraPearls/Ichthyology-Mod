@@ -11,6 +11,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using Ichthyology.Systems;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Ichthyology.IDSets;
 
 namespace Ichthyology.Systems
 {
@@ -121,6 +122,11 @@ namespace Ichthyology.Systems
             //All Water Items
             else
             {
+                if (player.IchthyologyPlayer().GoldenCage)
+                {
+                    FishUtils.AddMultipleToList(VeryRareItems,
+                        CatchItemIDSets.GoldCritters);
+                }
                 //Bloodmoon items
                 if (Main.bloodMoon)
                 {
@@ -129,6 +135,12 @@ namespace Ichthyology.Systems
                         LegendaryItems.Add(ItemID.CombatBook);
                         LegendaryItems.Add(ItemID.DreadoftheRedSea);
                     }
+                }
+
+                if (player.IchthyologyPlayer().MagnetHook)
+                {
+                    FishUtils.AddMultipleToList(UncommonItems, 
+                        CatchItemIDSets.OreCatches);
                 }
 
                 //Space Items
