@@ -137,6 +137,7 @@ namespace Ichthyology.Systems
                     FishUtils.AddMultipleToList(CommonItems,
                         ItemID.Feather,
                         ItemID.RainCloud);
+                    UncommonItems.Add(ItemID.Damselfish);
                     RareItems.Add(ItemID.FallenStar);
                 }
 
@@ -211,7 +212,12 @@ namespace Ichthyology.Systems
                 {
                     if (!cavernLayer)
                     {
-                        CommonItems.Add(ItemID.IceBlock);
+                        FishUtils.AddMultipleToList(CommonItems,
+                            ItemID.IceBlock,
+                            ItemID.AtlanticCod,);
+                        FishUtils.AddMultipleToList(UncommonItems,
+                            ItemID.FrostDaggerfish,
+                            ItemID.FrostMinnow);
                         FishUtils.AddMultipleToList(RareItems,
                             ItemID.EskimoCoat,
                             ItemID.EskimoHood,
@@ -366,11 +372,13 @@ namespace Ichthyology.Systems
                     {
                         LegendaryItems.Add(ItemID.JungleKey);
                     }
+                    CommonItems.Add(ItemID.NeonTetra);
                     if (!(undergroundLayer || cavernLayer))
                     {
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.Mango,
                             ItemID.Pineapple);
+                        UncommonItems.Add(ItemID.DoubleCod);
                         VeryRareItems.Add(ItemID.Bezoar);
                         if (hardMode)
                         {
@@ -384,7 +392,9 @@ namespace Ichthyology.Systems
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.Vine,
                             ItemID.Stinger);
-                        UncommonItems.Add(ItemID.JungleSpores);
+                        FishUtils.AddMultipleToList(UncommonItems,
+                            ItemID.VariegatedLardfish,
+                            ItemID.JungleSpores);
                         FishUtils.AddMultipleToList(RareItems,
                             ItemID.JungleRose,
                             ItemID.NaturesGift);
@@ -417,7 +427,7 @@ namespace Ichthyology.Systems
                 }
 
                 //Ocean Items
-                else if (player.ZoneBeach)
+                else if ((Main.remixWorld && attempt.heightLevel == 1 && (double)attempt.Y >= Main.rockLayer && Main.rand.Next(3) == 0) || (attempt.heightLevel <= 1 && (attempt.X < 380 || attempt.X > Main.maxTilesX - 380) && attempt.waterTilesCount > 1000))
                 {
                     FishUtils.AddMultipleToList(CommonItems,
                         ItemID.OldShoe,
@@ -428,14 +438,24 @@ namespace Ichthyology.Systems
                         ItemID.Coral,
                         ItemID.Seashell,
                         ItemID.Starfish,
+                        ItemID.RedSnapper,
+                        ItemID.Tuna,
+                        ItemID.Trout);
+                    FishUtils.AddMultipleToList(UncommonItems,
+                        ItemID.BombFish,
+                        ItemID.Shrimp,
                         ItemID.Coconut,
                         ItemID.Banana);
-                    UncommonItems.Add(ItemID.BombFish);
                     FishUtils.AddMultipleToList(RareItems,
                         ItemID.TulipShell,
                         ItemID.LightningWhelkShell,
-                        ItemID.DivingHelmet);
-                    VeryRareItems.Add(ItemID.JunoniaShell);
+                        ItemID.DivingHelmet,
+                        ItemID.PinkJellyfish,
+                        ItemID.Swordfish);
+                    FishUtils.AddMultipleToList(VeryRareItems,
+                        ItemID.JunoniaShell,
+                        ItemID.ReaverShark,
+                        ItemID.SawtoothShark);
                     FishUtils.AddMultipleToList(LegendaryItems,
                         ItemID.FrogLeg,
                         ItemID.BalloonPufferfish,
@@ -476,6 +496,8 @@ namespace Ichthyology.Systems
                         }
                     }
                 }
+
+                //Mushroom Biome catches
                 else if (player.ZoneGlowshroom)
                 {
                     FishUtils.AddMultipleToList(CommonItems,
@@ -483,7 +505,40 @@ namespace Ichthyology.Systems
                         ItemID.MushroomGrassSeeds);
                     LegendaryItems.Add(ItemID.ToiletMushroom);
                 }
+
+                //Generic fish spawns in multiple layers or zones.
+                else if (cavernLayer || undergroundLayer || player.ZoneUnderworldHeight)
+                {
+                    RareItems.Add(ItemID.ArmoredCavefish);
+                    if (player.ZoneForest || player.ZoneJungle || player.ZoneSnow)
+                    {
+                        CommonItems.Add(ItemID.SpecularFish);
+                    }
+                }
+                else if (!player.ZoneUnderworldHeight)
+                {
+                    RareItems.Add(ItemID.Stinkfish);
+                    VeryRareItems.Add(ItemID.Rockfish);
+                    LegendaryItems.Add(ItemID.GoldenCarp);
+                    if (hardMode)
+                    {
+                        RareItems.Add(ItemID.GreenJellyfish);
+                    }
+                    else
+                    {
+                        RareItems.Add(ItemID.BlueJellyfish);
+                    }
+                }
+                else if (!(cavernLayer || undergroundLayer || player.ZoneUnderworldHeight) && attempt.waterTilesCount > 1000)
+                {
+                    CommonItems.Add(ItemID.Salmon);
+                }
+                else
+                {
+                    CommonItems.Add(ItemID.Bass);
+                }
             }
+
             int catchRarity = -1;
             if(attempt.common && CommonItems.Count > 0)
             {
