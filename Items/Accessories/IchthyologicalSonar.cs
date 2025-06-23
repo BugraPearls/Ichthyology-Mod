@@ -29,5 +29,9 @@ namespace Ichthyology.Items.Accessories
         {
             player.IchthyologyPlayer().scChance += 0.95f;
         }
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+        }
     }
 }
