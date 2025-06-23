@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ichthyology.Systems;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -17,6 +18,7 @@ namespace Ichthyology.Items.Accessories
         public override void SetDefaults()
         {
             Item.DefaultToAccessory();
+            Item.rare = ItemRarityID.Master;
         }
         public override void UpdateEquip(Player player) //TODO: OBVIOUSLY CHANGE THESE
         {

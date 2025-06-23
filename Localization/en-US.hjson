@@ -16,7 +16,7 @@ Mods: {
 
 				SeaCreatureBonusAcc: {
 					DisplayName: Sea Creature Bonus Acc
-					Tooltip: ""
+					Tooltip: How did you get this? Accessory for Testing Purposes. 
 				}
 
 				TwinHook: {

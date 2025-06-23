@@ -18,6 +18,8 @@ namespace Ichthyology.Items.Accessories
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.FishermansGuide);
+            Item.value = Item.sellPrice(gold: 1);
+            Item.rare = ItemRarityID.Green;
         }
         public override void UpdateInfoAccessory(Player player)
         {
