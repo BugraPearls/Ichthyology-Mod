@@ -11,40 +11,102 @@ Mods: {
 			Accessories: {
 				GoldenCage: {
 					DisplayName: Golden Cage
-					Tooltip: "Allows golden critters to be caught"
+					Tooltip: Allows golden critters to be caught
 				}
+
 				SeaCreatureBonusAcc: {
 					DisplayName: Sea Creature Bonus Acc
 					Tooltip: ""
 				}
+
 				TwinHook: {
 					DisplayName: Twin Hook
 					Tooltip: ""
 				}
+
 				IchthyologicalSonar: {
 					DisplayName: Ichthyological Sonar
 					Tooltip: ""
 				}
 			}
+
 			Baits: {
 				MagneticBait: {
 					DisplayName: Magnetic Bait
 					Tooltip: ""
 				}
+
 				SlimyBait: {
 					DisplayName: Slimy Bait
-					Tooltip: "Increases Sea Creature Chance"
+					Tooltip: Increases Sea Creature Chance
 				}
+
 				FishBait: {
 					Displayname: Fish Bait
 					Tooltip: ""
 				}
 			}
+
 			Tools: {
 				SlimyRod: {
 					DisplayName: Slimy Rod
 					Tooltip: ""
 				}
+			}
+
+			GoldenCage: {
+				DisplayName: Golden Cage
+				Tooltip: ""
+			}
+
+			IchthyologicalSonar: {
+				DisplayName: Ichthyological Sonar
+				Tooltip: ""
+			}
+
+			SeaCreatureBonusAcc: {
+				DisplayName: Sea Creature Bonus Acc
+				Tooltip: ""
+			}
+
+			TwinHook: {
+				DisplayName: Twin Hook
+				Tooltip: ""
+			}
+
+			FishBait: {
+				DisplayName: Fish Bait
+				Tooltip: ""
+			}
+
+			MagneticBait: {
+				DisplayName: Magnetic Bait
+				Tooltip: ""
+			}
+
+			SlimyBait: {
+				DisplayName: Slimy Bait
+				Tooltip: ""
+			}
+
+			SlimyRod: {
+				DisplayName: Slimy Rod
+				Tooltip: ""
+			}
+
+			Obelfish: {
+				DisplayName: Obelfish
+				Tooltip: ""
+			}
+
+			Puffer: {
+				DisplayName: Puffer
+				Tooltip: ""
+			}
+
+			WitheredFish: {
+				DisplayName: Withered Fish
+				Tooltip: ""
 			}
 		}
 	}
