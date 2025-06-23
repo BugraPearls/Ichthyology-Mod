@@ -13,6 +13,8 @@ namespace Ichthyology.Items.Accessories
 {
     public class GoldenCage : ModItem
     {
+        public override LocalizedText Tooltip => Language.GetText("Mods.Ichthyology.Items.Accessories.GoldenCage.Tooltip");
+        public override LocalizedText DisplayName => Language.GetText("Mods.Ichthyology.Items.Accessories.GoldenCage.DisplayName");
         public override void SetDefaults()
         {
             Item.width = 32;
