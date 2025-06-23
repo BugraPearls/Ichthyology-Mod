@@ -185,13 +185,6 @@ namespace Ichthyology.Systems
         {
             player.IchthyologyBestiary().AddToSCList(npc.type);
         }
-        public override void ModifyFishingAttempt(ref FishingAttempt attempt)
-        {
-            if (attempt.playerFishingConditions.PoleItemType == ItemID.BloodFishingRod)
-            {
-                scChance += 30;
-            }
-        }
         public override void ModifyCaughtFish(Item fish)
         {
             Player.IchthyologyBestiary().AddToCatchList(fish.type);
@@ -244,6 +237,13 @@ namespace Ichthyology.Systems
                 return false;
             }
             return null;
+        }
+        public override void PostUpdateMiscEffects()
+        {
+            if (Player.GetFishingConditions().PoleItemType == ItemID.BloodFishingRod)
+            {
+                scChance += 0.3f;
+            }
         }
     }
     /// <summary>
