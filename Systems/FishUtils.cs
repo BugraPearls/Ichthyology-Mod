@@ -176,5 +176,16 @@ namespace Ichthyology.Systems
             }
             return plr.ZoneJungle;
         }
+        /// <summary>
+        /// Returns if according to vanilla rules, current biome is 'Desert'.
+        /// </summary>
+        public static bool DesertBiomeVanillaRules(Player plr)
+        {
+            if (DungeonBiomeVanillaRules(plr))
+            {
+                return false;
+            }
+            return plr.ZoneDesert;
+        }
     }
 }
