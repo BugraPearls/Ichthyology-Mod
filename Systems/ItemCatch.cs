@@ -214,7 +214,7 @@ namespace Ichthyology.Systems
                     {
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.IceBlock,
-                            ItemID.AtlanticCod,);
+                            ItemID.AtlanticCod);
                         FishUtils.AddMultipleToList(UncommonItems,
                             ItemID.FrostDaggerfish,
                             ItemID.FrostMinnow);

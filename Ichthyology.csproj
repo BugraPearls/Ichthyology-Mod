@@ -8,7 +8,10 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
-	  <Folder Include="NPCs\" />
+	  <AdditionalFiles Remove="NPCs\**" />
+	  <Compile Remove="NPCs\**" />
+	  <EmbeddedResource Remove="NPCs\**" />
+	  <None Remove="NPCs\**" />
 	</ItemGroup>
 
 	<!-- References -->

@@ -120,12 +120,12 @@ namespace Ichthyology.IDSets
             ItemID.RottenChunk,
             ItemID.Vitamins);
 
-        public static bool[] CrimsonCatches = ItemID.Sets.Factory.CreateNamedSet("CrimsonCatches").Description("Set of all the possible item catches in the Crimson Biome").RegisterBoolSet(false,
+        public static int[] CrimsonCatches = {
             ItemID.Vertebrae,
             ItemID.ViciousMushroom,
             ItemID.CrimsonKey,
             ItemID.BloodWater,
-            ItemID.Blindfold);
+            ItemID.Blindfold };
 
         public static bool[] UndergroundCrimsonCatches = ItemID.Sets.Factory.CreateNamedSet("UndergroundCrimsonCatches").Description("Set of all the possible item catches in the Underground Crimson Biome").RegisterBoolSet(false,
             ItemID.Vertebrae,
