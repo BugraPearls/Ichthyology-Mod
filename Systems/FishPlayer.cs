@@ -59,13 +59,15 @@ namespace Ichthyology.Systems
         /// </summary>
         public float questFishCatchChance = 0.25f;
         /// <summary>
-        /// Whether or not SCC to be displayed.
-        /// </summary>
-        public bool displaySCC;
-        /// <summary>
         /// Items up to this price point can have their stack raised as they are caught up. Defaults to 10 silver.
         /// </summary>
         public int costCapForStackRaise = 1000;
+        /// <summary>
+        /// Whether or not SCC to be displayed.
+        /// </summary>
+        public bool displaySCC;
+        public bool GoldenCage = false;
+
         public override void ResetEffects()
         {
             scChance = 0.1f;
@@ -76,6 +78,7 @@ namespace Ichthyology.Systems
             scLootIncrease = 0;
             questFishCatchChance = 0.25f;
             costCapForStackRaise = 1000;
+            GoldenCage = false;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {

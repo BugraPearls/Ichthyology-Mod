@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ichthyology.Systems;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -29,6 +30,10 @@ namespace Ichthyology.Items.Accessories
                 .AddIngredient(ItemID.ApprenticeBait, 10)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
+        }
+        public override void UpdateEquip(Player player)
+        {
+            player.IchthyologyPlayer().GoldenCage = true;
         }
     }
 }
