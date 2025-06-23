@@ -170,6 +170,10 @@ namespace Ichthyology.Systems
         /// </summary>
         public static bool JungleBiomeVanillaRules(Player plr)
         {
+            if (SnowBiomeVanillaRules(plr))
+            {
+                return false;
+            }
             if (Main.notTheBeesWorld && !Main.remixWorld && Main.rand.NextBool())
             {
                 return false;
