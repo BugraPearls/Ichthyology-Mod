@@ -50,7 +50,7 @@ Mods: {
 			Tools: {
 				SlimyRod: {
 					DisplayName: Slimy Rod
-					Tooltip: ""
+					Tooltip: Higher Chance of catching Sea Creatures!
 				}
 			}
 

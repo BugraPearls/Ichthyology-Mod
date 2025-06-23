@@ -10,6 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using Ichthyology.Systems;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Ichthyology.Systems
 {
@@ -22,6 +23,12 @@ namespace Ichthyology.Systems
         /// <param name="attempt"></param>
         public static int CatchItem(Player player, FishingAttempt attempt)
         {
+            bool hardMode = Main.hardMode;
+            bool plantDead = NPC.downedPlantBoss;
+            bool cavernLayer = player.ZoneRockLayerHeight;
+            bool undergroundLayer = player.ZoneDirtLayerHeight;
+            int id = attempt.rolledItemDrop;
+
             List<int> CommonItems = new List<int>();
             List<int> UncommonItems = new List<int>();
             List<int> RareItems = new List<int>();
@@ -38,7 +45,59 @@ namespace Ichthyology.Systems
                     }
                 }
             }
-
+            
+            if (attempt.crate)
+            {
+                if (attempt.rare && FishUtils.DungeonBiomeVanillaRules(player))
+                {
+                    id = (hardMode ? 3984 : 3205);
+                }
+                else if (attempt.rare && (player.ZoneBeach || (Main.remixWorld && attempt.heightLevel == 1 && (double)attempt.Y >= Main.rockLayer && Main.rand.NextBool(2))))
+                {
+                    id = (hardMode ? 5003 : 5002);
+                }
+                else if (attempt.rare && FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
+                {
+                    id = (hardMode ? 3982 : 3203);
+                }
+                else if (attempt.rare && FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
+                {
+                    id = (hardMode ? 3983 : 3204);
+                }
+                else if (attempt.rare && player.ZoneHallow)
+                {
+                    id = (hardMode ? 3986 : 3207);
+                }
+                else if (attempt.rare && FishUtils.JungleBiomeVanillaRules(player))
+                {
+                    id = (hardMode ? 3987 : 3208);
+                }
+                else if (attempt.rare && player.ZoneSnow)
+                {
+                    id = (hardMode ? 4406 : 4405);
+                }
+                else if (attempt.rare && FishUtils.DesertBiomeVanillaRules(player))
+                {
+                    id = (hardMode ? 4408 : 4407);
+                }
+                else if (attempt.rare && attempt.heightLevel == 0)
+                {
+                    id = (hardMode ? 3985 : 3206);
+                }
+                else if (attempt.veryrare || attempt.legendary)
+                {
+                    id = (hardMode ? 3981 : 2336);
+                }
+                else if (attempt.uncommon)
+                {
+                    id = (hardMode ? 3980 : 2335);
+                }
+                else
+                {
+                    id = (hardMode ? 3979 : 2334);
+                }
+                return id;
+            }
             //Lava Items
             if (attempt.inLava)
             {
@@ -56,11 +115,22 @@ namespace Ichthyology.Systems
             }
             else if (attempt.inHoney)
             {
-
+                CommonItems.Add(ItemID.HoneyBlock);
+                RareItems.Add(ItemID.BottledHoney);
             }
             //All Water Items
             else
             {
+                //Bloodmoon items
+                if (Main.bloodMoon)
+                {
+                    if (!NPC.combatBookWasUsed)
+                    {
+                        LegendaryItems.Add(ItemID.CombatBook);
+                        LegendaryItems.Add(ItemID.DreadoftheRedSea);
+                    }
+                }
+
                 //Space Items
                 if (player.ZoneSkyHeight)
                 {
@@ -83,10 +153,10 @@ namespace Ichthyology.Systems
                         ItemID.Apricot,
                         ItemID.Grapefruit,
                         ItemID.Lemon,
-                        ItemID.BlueBerries, 
+                        ItemID.BlueBerries,
                         ItemID.Shackle,
                         ItemID.Lens);
-                    if (Main.hardMode)
+                    if (hardMode)
                     {
                         VeryRareItems.Add(ItemID.AdhesiveBandage);
                     }
@@ -113,7 +183,7 @@ namespace Ichthyology.Systems
                         ItemID.EnchantedSword,
                         ItemID.Terragrim,
                         ItemID.Arkhalis);
-                    if (Main.hardMode)
+                    if (hardMode)
                     {
                         FishUtils.AddMultipleToList(VeryRareItems,
                             ItemID.ArmorPolish,
@@ -139,32 +209,36 @@ namespace Ichthyology.Systems
                 //Snow Biome Items
                 else if (FishUtils.SnowBiomeVanillaRules(player))
                 {
-                    if (!player.ZoneRockLayerHeight)
+                    if (!cavernLayer)
                     {
                         CommonItems.Add(ItemID.IceBlock);
                         FishUtils.AddMultipleToList(RareItems,
                             ItemID.EskimoCoat,
                             ItemID.EskimoHood,
                             ItemID.EskimoPants);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             VeryRareItems.Add(ItemID.Amarok);
                         }
-                        if (NPC.downedPlantBoss)
+                        if (plantDead)
                         {
                             LegendaryItems.Add(ItemID.FrozenKey);
                         }
                     }
                     //Underground Ice Biome Items
-                    else if (player.ZoneRockLayerHeight)
+                    else if (cavernLayer)
                     {
                         CommonItems.Add(ItemID.IceBlock);
                         RareItems.Add(ItemID.FlinxFur);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             VeryRareItems.Add(ItemID.Amarok);
+                            if (player.ZoneCrimson || player.ZoneCorrupt)
+                            {
+                                LegendaryItems.Add(ItemID.ScalyTruffle);
+                            }
                         }
-                        if (NPC.downedPlantBoss)
+                        if (plantDead)
                         {
                             LegendaryItems.Add(ItemID.FrozenKey);
                         }
@@ -172,16 +246,20 @@ namespace Ichthyology.Systems
                 }
 
                 //Desert Items
-                else if (player.ZoneDesert)
+                else if (FishUtils.DesertBiomeVanillaRules(player))
                 {
-                    CommonItems.Add(ItemID.SandBlock);
-                    if (Main.hardMode)
+                    FishUtils.AddMultipleToList(CommonItems,
+                        ItemID.SandBlock,
+                        ItemID.RockLobster,
+                        ItemID.Flounder);
+                    UncommonItems.Add(ItemID.Oyster);
+                    if (hardMode)
                     {
                         FishUtils.AddMultipleToList(VeryRareItems,
                             ItemID.AncientBattleArmorMaterial,
                             ItemID.TrifoldMap);
                     }
-                    if (NPC.downedPlantBoss)
+                    if (plantDead)
                     {
                         LegendaryItems.Add(ItemID.DungeonDesertKey);
                     }
@@ -191,12 +269,12 @@ namespace Ichthyology.Systems
                 else if (player.ZoneUndergroundDesert)
                 {
                     CommonItems.Add(ItemID.HardenedSand);
-                    if (Main.hardMode)
+                    if (hardMode)
                     {
                         RareItems.Add(ItemID.AncientCloth);
                         VeryRareItems.Add(ItemID.FastClock);
                     }
-                    if (NPC.downedPlantBoss)
+                    if (plantDead)
                     {
                         LegendaryItems.Add(ItemID.DungeonDesertKey);
                     }
@@ -205,32 +283,34 @@ namespace Ichthyology.Systems
                 //Corruption
                 else if (FishUtils.CorruptBiomeVanillaRules(player, attempt.heightLevel))
                 {
-                    if (NPC.downedPlantBoss)
+                    if (plantDead)
                     {
                         LegendaryItems.Add(ItemID.CorruptionKey);
                     }
-                    if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
+                    if (!(undergroundLayer || cavernLayer))
                     {
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.WormTooth,
                             ItemID.VileMushroom,
                             ItemID.RottenChunk);
+                        UncommonItems.Add(ItemID.Ebonkoi);
                         RareItems.Add(ItemID.UnholyWater);
+                        RareItems.Add(ItemID.PurpleClubberfish);
                         FishUtils.AddMultipleToList(LegendaryItems,
                             ItemID.AncientShadowGreaves,
                             ItemID.AncientShadowHelmet,
                             ItemID.AncientShadowScalemail);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             VeryRareItems.Add(ItemID.Blindfold);
                         }
                     }
                     //Underground Corruption
-                    else if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
+                    else if (undergroundLayer || cavernLayer)
                     {
                         CommonItems.Add(ItemID.RottenChunk);
                         RareItems.Add(ItemID.UnholyWater);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             UncommonItems.Add(ItemID.SoulofNight);
                             RareItems.Add(ItemID.CursedFlame);
@@ -242,27 +322,31 @@ namespace Ichthyology.Systems
                 //Crimson Items
                 else if (FishUtils.CrimsonBiomeVanillaRules(player, attempt.heightLevel))
                 {
-                    if (NPC.downedPlantBoss)
+                    LegendaryItems.Add(ItemID.Bladetongue);
+                    UncommonItems.Add(ItemID.Hemopiranha);
+                    CommonItems.Add(ItemID.CrimsonTigerfish);
+                    if (plantDead)
                     {
                         LegendaryItems.Add(ItemID.CrimsonKey);
                     }
-                    if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
+                    if (!(undergroundLayer || cavernLayer))
                     {
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.Vertebrae,
                             ItemID.ViciousMushroom);
                         RareItems.Add(ItemID.BloodWater);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             VeryRareItems.Add(ItemID.Blindfold);
+
                         }
                     }
                     //Underground Crimson Items
-                    else if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
+                    else if (undergroundLayer || cavernLayer)
                     {
                         CommonItems.Add(ItemID.Vertebrae);
                         RareItems.Add(ItemID.BloodWater);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             UncommonItems.Add(ItemID.SoulofNight);
                             RareItems.Add(ItemID.Ichor);
@@ -278,24 +362,24 @@ namespace Ichthyology.Systems
                     {
                         VeryRareItems.Add(ItemID.Yelets);
                     }
-                    if (NPC.downedPlantBoss)
+                    if (plantDead)
                     {
                         LegendaryItems.Add(ItemID.JungleKey);
                     }
-                    if (!(player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight))
+                    if (!(undergroundLayer || cavernLayer))
                     {
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.Mango,
                             ItemID.Pineapple);
                         VeryRareItems.Add(ItemID.Bezoar);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             RareItems.Add(ItemID.TurtleShell);
                             LegendaryItems.Add(ItemID.Uzi);
                         }
                     }
                     //Underground Jungle
-                    else if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight)
+                    else if (undergroundLayer || cavernLayer)
                     {
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.Vine,
@@ -304,7 +388,7 @@ namespace Ichthyology.Systems
                         FishUtils.AddMultipleToList(RareItems,
                             ItemID.JungleRose,
                             ItemID.NaturesGift);
-                        if (Main.hardMode)
+                        if (hardMode)
                         {
                             UncommonItems.Add(ItemID.TurtleShell);
                             RareItems.Add(ItemID.LifeFruit);
@@ -317,7 +401,7 @@ namespace Ichthyology.Systems
                 {
                     CommonItems.Add(ItemID.Bone);
                     UncommonItems.Add(ItemID.GoldenKey);
-                    if (Main.hardMode)
+                    if (hardMode)
                     {
                         UncommonItems.Add(ItemID.Ectoplasm);
                         FishUtils.AddMultipleToList(VeryRareItems,
@@ -327,7 +411,8 @@ namespace Ichthyology.Systems
                             ItemID.MagnetSphere,
                             ItemID.Kraken,
                             ItemID.MaceWhip,
-                            ItemID.Nazar);
+                            ItemID.Nazar,
+                            ItemID.AlchemyTable);
                     }
                 }
 
@@ -335,6 +420,8 @@ namespace Ichthyology.Systems
                 else if (player.ZoneBeach)
                 {
                     FishUtils.AddMultipleToList(CommonItems,
+                        ItemID.OldShoe,
+                        ItemID.JojaCola,
                         ItemID.Seahorse,
                         ItemID.SharkFin,
                         ItemID.Glowstick,
@@ -343,32 +430,60 @@ namespace Ichthyology.Systems
                         ItemID.Starfish,
                         ItemID.Coconut,
                         ItemID.Banana);
+                    UncommonItems.Add(ItemID.BombFish);
                     FishUtils.AddMultipleToList(RareItems,
                         ItemID.TulipShell,
                         ItemID.LightningWhelkShell,
                         ItemID.DivingHelmet);
                     VeryRareItems.Add(ItemID.JunoniaShell);
+                    FishUtils.AddMultipleToList(LegendaryItems,
+                        ItemID.FrogLeg,
+                        ItemID.BalloonPufferfish,
+                        ItemID.ZephyrFish);
                 }
 
                 //Hallow Items
                 else if (player.ZoneHallow)
                 {
-                    CommonItems.Add(ItemID.PixieDust);
-                    UncommonItems.Add(ItemID.UnicornHorn);
-                    FishUtils.AddMultipleToList(RareItems,
-                        ItemID.FairyCritterBlue,
-                        ItemID.FairyCritterGreen,
-                        ItemID.FairyCritterPink);
-                    FishUtils.AddMultipleToList(VeryRareItems,
-                        ItemID.BlessedApple,
-                        ItemID.Megaphone);
-                    if (NPC.downedPlantBoss)
+                    if (hardMode)
                     {
-                        LegendaryItems.Add(ItemID.HallowedKey);
+                        CommonItems.Add(ItemID.PixieDust);
+                        FishUtils.AddMultipleToList(UncommonItems,
+                            ItemID.UnicornHorn,
+                            ItemID.PrincessFish);
+                        FishUtils.AddMultipleToList(RareItems,
+                            ItemID.FairyCritterBlue,
+                            ItemID.FairyCritterGreen,
+                            ItemID.FairyCritterPink,
+                            ItemID.Prismite);
+                        FishUtils.AddMultipleToList(VeryRareItems,
+                            ItemID.BlessedApple,
+                            ItemID.Megaphone);
+                        FishUtils.AddMultipleToList(LegendaryItems,
+                            ItemID.CrystalSerpent,
+                            ItemID.LadyOfTheLake);
+                        if (cavernLayer)
+                        {
+                            VeryRareItems.Add(ItemID.ChaosFish);
+                        }
+                        if (plantDead)
+                        {
+                            LegendaryItems.Add(ItemID.HallowedKey);
+                        }
+                        if (FishUtils.SnowBiomeVanillaRules(player))
+                        {
+                            LegendaryItems.Add(ItemID.ScalyTruffle);
+                        }
                     }
                 }
+                else if (player.ZoneGlowshroom)
+                {
+                    FishUtils.AddMultipleToList(CommonItems,
+                        ItemID.Mushroom,
+                        ItemID.MushroomGrassSeeds);
+                    LegendaryItems.Add(ItemID.ToiletMushroom);
+                }
             }
-
             int catchRarity = -1;
             if(attempt.common && CommonItems.Count > 0)
             {

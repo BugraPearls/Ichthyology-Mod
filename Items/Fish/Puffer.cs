@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Items.Fish
 {
     public class Puffer : ModItem
     {
+        public override LocalizedText Tooltip => Language.GetText("Mods.Ichthyology.Items.Fish.Puffer.Tooltip");
+        public override LocalizedText DisplayName => Language.GetText("Mods.Ichthyology.Items.Fish.Puffer.DisplayName");
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.Bass);

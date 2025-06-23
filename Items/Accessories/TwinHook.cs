@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using Ichthyology.Systems;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Ichthyology.Items.Accessories
 {
     public class TwinHook : ModItem
     {
+        public override LocalizedText Tooltip => Language.GetText("Mods.Ichthyology.Items.Accessories.TwinHook.Tooltip");
+        public override LocalizedText DisplayName => Language.GetText("Mods.Ichthyology.Items.Accessories.TwinHook.DisplayName");
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.FishingBobber);
