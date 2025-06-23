@@ -19,6 +19,7 @@ namespace Ichthyology.Items.Tools
             Item.CloneDefaults(ItemID.WoodFishingPole);
 
             Item.fishingPole = 30;
+            Item.shoot = ModContent.ProjectileType<Projectiles.SlimeBobber>();
         }
     }
 }
