@@ -246,6 +246,18 @@ namespace Ichthyology.Systems
             {
                 scChance += 0.3f;
             }
+            if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.CellPhone))
+            {
+                Player.IchthyologyPlayer().displaySCC = true;
+            }
+            else if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.PDA))
+            {
+                Player.IchthyologyPlayer().displaySCC = true;
+            }
+            else if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.FishFinder))
+            {
+                Player.IchthyologyPlayer().displaySCC = true;
+            }
         }
     }
     /// <summary>
