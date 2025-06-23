@@ -67,7 +67,7 @@ namespace Ichthyology.Systems
         /// </summary>
         public bool displaySCC;
         public bool GoldenCage = false;
-
+        public bool TwinHook = false;
         public override void ResetEffects()
         {
             scChance = 0.1f;
@@ -78,7 +78,8 @@ namespace Ichthyology.Systems
             scLootIncrease = 0;
             questFishCatchChance = 0.25f;
             costCapForStackRaise = 1000;
-            GoldenCage = false;
+            GoldenCage = false; 
+            TwinHook = false;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {

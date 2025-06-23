@@ -19,7 +19,7 @@ namespace Ichthyology.Items.Accessories
             Item.height = 32;
             Item.maxStack = 1;
             Item.accessory = true;
-            Item.value = Terraria.Item.sellPrice(silver: 50);
+            Item.value = Item.sellPrice(silver: 50);
             Item.rare = ItemRarityID.Orange;
         }
 
