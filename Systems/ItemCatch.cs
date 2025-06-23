@@ -74,17 +74,18 @@ namespace Ichthyology.Systems
                 else if (player.ZoneForest)
                 {
                     FishUtils.AddMultipleToList(CommonItems,
+                        ItemID.Gel);
+                    FishUtils.AddMultipleToList(UncommonItems,
+                        ItemID.Goldfish);
+                    FishUtils.AddMultipleToList(RareItems,
                         ItemID.Apple,
                         ItemID.Peach,
                         ItemID.Apricot,
                         ItemID.Grapefruit,
                         ItemID.Lemon,
-                        ItemID.BlueBerries,
-                        ItemID.Gel);
-                    FishUtils.AddMultipleToList(UncommonItems,
+                        ItemID.BlueBerries, 
                         ItemID.Shackle,
-                        ItemID.Lens,
-                        ItemID.Goldfish);
+                        ItemID.Lens);
                     if (Main.hardMode)
                     {
                         VeryRareItems.Add(ItemID.AdhesiveBandage);

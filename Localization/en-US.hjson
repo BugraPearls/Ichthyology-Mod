@@ -8,35 +8,43 @@ Mods: {
 		}
 
 		Items: {
-			GoldenBait: {
-				DisplayName: Golden Bait
-				Tooltip: ""
+			Accessories: {
+				GoldenCage: {
+					DisplayName: Golden Cage
+					Tooltip: "Allows golden critters to be caught"
+				}
+				SeaCreatureBonusAcc: {
+					DisplayName: Sea Creature Bonus Acc
+					Tooltip: ""
+				}
+				TwinHook: {
+					DisplayName: Twin Hook
+					Tooltip: ""
+				}
+				IchthyologicalSonar: {
+					DisplayName: Ichthyological Sonar
+					Tooltip: ""
+				}
 			}
-
-			MagneticBait: {
-				DisplayName: Magnetic Bait
-				Tooltip: ""
+			Baits: {
+				MagneticBait: {
+					DisplayName: Magnetic Bait
+					Tooltip: ""
+				}
+				SlimyBait: {
+					DisplayName: Slimy Bait
+					Tooltip: "Increases Sea Creature Chance"
+				}
+				FishBait: {
+					Displayname: Fish Bait
+					Tooltip: ""
+				}
 			}
-
-			CreatureBait: {
-				DisplayName: Creature Bait
-				Tooltip: ""
-			}
-
-			FishBait: {
-				Displayname: Fish Bait
-				Tooltip: ""
-				DisplayName: Fish Bait
-			}
-
-			IchthyologicalSonar: {
-				DisplayName: Ichthyological Sonar
-				Tooltip: ""
-			}
-
-			SeaCreatureBonusAcc: {
-				DisplayName: Sea Creature Bonus Acc
-				Tooltip: ""
+			Tools: {
+				SlimyRod: {
+					DisplayName: Slimy Rod
+					Tooltip: ""
+				}
 			}
 		}
 	}

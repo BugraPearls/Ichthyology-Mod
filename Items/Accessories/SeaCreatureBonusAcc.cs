@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Ichthyology.Items
+namespace Ichthyology.Items.Accessories
 {
     public class SeaCreatureBonusAcc : ModItem
     {

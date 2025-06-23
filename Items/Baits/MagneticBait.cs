@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Ichthyology.Items
+namespace Ichthyology.Items.Baits
 {
-    public class FishBait : ModItem
+    public class MagneticBait : ModItem
     {
-        public int fishBaitPower = 25;
+        public int magneticPower = 35;
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.ApprenticeBait);
-            Item.bait = fishBaitPower;
+            Item.bait = magneticPower;
         }
     }
 }

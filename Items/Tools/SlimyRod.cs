@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Ichthyology.Items
+namespace Ichthyology.Items.Tools
 {
-    public class MagneticBait : ModItem
+    public class SlimyRod : ModItem
     {
-        public int magneticPower = 35;
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.ApprenticeBait);
-            Item.bait = magneticPower;
+            Item.CloneDefaults(ItemID.WoodFishingPole);
+
+            Item.fishingPole = 30;
         }
     }
 }

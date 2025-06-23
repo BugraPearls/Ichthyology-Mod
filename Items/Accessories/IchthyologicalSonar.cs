@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Ichthyology.Items
+namespace Ichthyology.Items.Accessories
 {
     public class IchthyologicalSonar : ModItem
     {
