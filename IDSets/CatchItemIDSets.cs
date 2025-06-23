@@ -230,6 +230,18 @@ namespace Ichthyology.IDSets
             ItemID.MagmaStone,
             ItemID.ObsidianRose
         };
+        public static int[] GetAllPossibleCatchesWithQuestFish()
+        {
+            List<int> quests = new();
+            foreach (var item in ContentSamples.ItemsByType)
+            {
+                if (item.Value.questItem)
+                {
+                    quests.Add(item.Key);
+                }
+            }
+            return [.. AllPossibleCatches, .. quests];
+        }
         public static int[] AllPossibleCatches =
         {
             ItemID.AdhesiveBandage,

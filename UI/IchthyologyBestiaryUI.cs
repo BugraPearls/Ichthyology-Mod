@@ -449,7 +449,7 @@ namespace Ichthyology.UI
                 ShowTheList(GoldCritters, CatchItemIDSets.GoldCritters);
 
                 AllPossibleCatches.Clear();
-                foreach (var item in CatchItemIDSets.AllPossibleCatches)
+                foreach (var item in CatchItemIDSets.GetAllPossibleCatchesWithQuestFish())
                 {
                     AllPossibleCatches.Add(new UIItemIcon(ContentSamples.ItemsByType[item], !currentDrops.Contains(item)));
                 }
