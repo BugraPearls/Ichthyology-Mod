@@ -229,6 +229,34 @@ namespace Ichthyology.IDSets
             ItemID.LivingFireBlock,
             ItemID.MagmaStone,
             ItemID.ObsidianRose
+        }; 
+        public static int[] CrateCatches = {
+            ItemID.CorruptFishingCrate,
+            ItemID.CorruptFishingCrateHard,
+            ItemID.CrimsonFishingCrate,
+            ItemID.CrimsonFishingCrateHard,
+            ItemID.DungeonFishingCrate,
+            ItemID.DungeonFishingCrateHard,
+            ItemID.FloatingIslandFishingCrate,
+            ItemID.FloatingIslandFishingCrateHard,
+            ItemID.FrozenCrate,
+            ItemID.FrozenCrateHard,
+            ItemID.GoldenCrate,
+            ItemID.GoldenCrateHard,
+            ItemID.HallowedFishingCrate,
+            ItemID.HallowedFishingCrateHard,
+            ItemID.IronCrate,
+            ItemID.IronCrateHard,
+            ItemID.JungleFishingCrate,
+            ItemID.JungleFishingCrateHard,
+            ItemID.LavaCrate,
+            ItemID.LavaCrateHard,
+            ItemID.OasisCrate,
+            ItemID.OasisCrateHard,
+            ItemID.OceanCrate,
+            ItemID.OceanCrateHard,
+            ItemID.WoodenCrate,
+            ItemID.WoodenCrateHard
         };
         public static int[] GetAllPossibleCatchesWithQuestFish()
         {
@@ -399,7 +427,33 @@ namespace Ichthyology.IDSets
             ItemID.WispinaBottle,
             ItemID.WormTooth,
             ItemID.Yelets,
-            ItemID.ZephyrFish
+            ItemID.ZephyrFish,
+            ItemID.CorruptFishingCrate,
+            ItemID.CorruptFishingCrateHard,
+            ItemID.CrimsonFishingCrate,
+            ItemID.CrimsonFishingCrateHard,
+            ItemID.DungeonFishingCrate,
+            ItemID.DungeonFishingCrateHard,
+            ItemID.FloatingIslandFishingCrate,
+            ItemID.FloatingIslandFishingCrateHard,
+            ItemID.FrozenCrate,
+            ItemID.FrozenCrateHard,
+            ItemID.GoldenCrate,
+            ItemID.GoldenCrateHard,
+            ItemID.HallowedFishingCrate,
+            ItemID.HallowedFishingCrateHard,
+            ItemID.IronCrate,
+            ItemID.IronCrateHard,
+            ItemID.JungleFishingCrate,
+            ItemID.JungleFishingCrateHard,
+            ItemID.LavaCrate,
+            ItemID.LavaCrateHard,
+            ItemID.OasisCrate,
+            ItemID.OasisCrateHard,
+            ItemID.OceanCrate,
+            ItemID.OceanCrateHard,
+            ItemID.WoodenCrate,
+            ItemID.WoodenCrateHard
         };
     }
 }
