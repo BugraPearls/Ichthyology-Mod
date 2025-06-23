@@ -494,13 +494,19 @@ namespace Ichthyology.UI
         }
         public override void UpdateUI(GameTime gameTime)
         {
-            _UIPanel?.Update(gameTime);
-            if (Main.playerInventory)
+            if (currentState == CurrentUIState.MainMenu)
             {
-                _ButtonToShowUI?.Update(gameTime);
+                _UIPanel?.Update(gameTime);
+                _UIStatPanel?.Update(gameTime);
             }
-            _UIStatPanel?.Update(gameTime);
-            _UIItems?.Update(gameTime);
+            if (currentState == CurrentUIState.TurnedOff && Main.playerInventory)
+            { 
+                _ButtonToShowUI?.Update(gameTime); 
+            }
+            if (currentState == CurrentUIState.CatchBestiary)
+            {
+                _UIItems?.Update(gameTime);
+            }
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
