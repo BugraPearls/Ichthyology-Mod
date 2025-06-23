@@ -16,7 +16,7 @@ Mods: {
 
 				SeaCreatureBonusAcc: {
 					DisplayName: Sea Creature Bonus Acc
-					Tooltip: How did you get this? Accessory for Testing Purposes. 
+					Tooltip: How did you get this? Accessory for Testing Purposes.
 				}
 
 				TwinHook: {
@@ -70,20 +70,25 @@ Mods: {
 					Tooltip: Seen better days.
 				}
 			}
+
 			Armor: {
 				DivingHelmet: {
 					DisplayName: Diving Helmet
 					Tooltip: Increases breath timer and Sea Creature Chance
 				}
+
 				DivingChestplate: {
 					DisplayName: Diving Chestplate
 					Tooltip: Reduces damage taken by Sea Creatures and Increases Fishing Power
 				}
+
 				DivingLeggings: {
 					DisplayName: Diving Leggings
 					Tooltip: Increases damage done to Sea Creatures and Double Hook Chance
 				}
 			}
 		}
+
+		Projectiles.SlimeBobber.DisplayName: Slime Bobber
 	}
 }
