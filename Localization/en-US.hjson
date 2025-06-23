@@ -29,7 +29,7 @@ Mods: {
 			Baits: {
 				MagneticBait: {
 					DisplayName: Magnetic Bait
-					Tooltip: ""
+					Tooltip: "Allows ores to be caught"
 				}
 				SlimyBait: {
 					DisplayName: Slimy Bait
@@ -37,13 +37,27 @@ Mods: {
 				}
 				FishBait: {
 					Displayname: Fish Bait
-					Tooltip: ""
+					Tooltip: "No more pesky Sea Creatures!"
 				}
 			}
 			Tools: {
 				SlimyRod: {
 					DisplayName: Slimy Rod
 					Tooltip: ""
+				}
+			}
+			Fish: {
+				Obelfish: {
+					DisplayName: Obelfish
+					Tooltip: "He seems a little lost..."
+				}
+				Puffer: {
+					DisplayName: Puffer
+					Tooltip: "Caution: Danger of blowing up!"
+				}
+				WitheredFish: {
+					DisplayName: Withered Fish
+					Tooltip: "Seen better days."
 				}
 			}
 		}
