@@ -321,11 +321,11 @@ namespace Ichthyology.UI
         public UIImageButton button;
         public override void OnInitialize()
         {
-            button = new(ModContent.Request<Texture2D>("Terraria/Images/UI/ButtonPlay"));
+            button = new(ModContent.Request<Texture2D>("Ichthyology/UI/IchthyologyBestiaryUI"));
             button.Width.Set(30, 0);
             button.Height.Set(30, 0);
-            button.HAlign = 0.5f;
-            button.VAlign = 0.5f;
+            button.HAlign = 0.05f;
+            button.VAlign = 0.28f;
             button.OnLeftClick += Panel_OnLeftClick;
             Append(button);
         }
@@ -345,6 +345,14 @@ namespace Ichthyology.UI
         {
             if (Main.playerInventory)
             {
+                if (Main.GameMode == GameModeID.Creative)
+                {
+                    button.HAlign = 0.05f;
+                }
+                else
+                {
+                    button.HAlign = 0.02f;
+                }
                 base.Draw(spriteBatch);
             }
         }
@@ -352,32 +360,57 @@ namespace Ichthyology.UI
 
     public class IchthyologyItemUniques : UIState
     {
-        public UIList allCaughtList;
-        public UIList lavaList;
+        public UIList AllCaughtList;
+        public UIList SpaceCatches;
+        public UIList ForestCatches;
+        public UIList UndergroundCatches; //Cavern combined
+        public UIList SnowCatches; //Ice combined
+        public UIList DesertCatches; //Underground desert combined
+        public UIList CorruptionCatches; //Underground Corruption combined
+        public UIList CrimsonCatches; //Underground Crimson combined
+        public UIList JungleCatches; //Underground Jungle and Honey combined
+        public UIList DungeonCatches;
+        public UIList OceanCatches;
+        public UIList HallowCatches;
+        public UIList LavaCatches;
+        public UIList OreCatches;
+        public UIList GoldCritters;
+        public UIList AllPossibleCatches;
         public override void OnInitialize()
         {
             ClickPreventedPanel panel = new();
-            panel.Width.Set(1000, 0);
+            panel.Width.Set(950, 0);
             panel.Height.Set(400, 0);
             panel.HAlign = 0.5f;
             panel.VAlign = 0.5f;
             Append(panel);
 
-            allCaughtList = new();
-            allCaughtList.Width.Set(50, 0);
-            allCaughtList.Height.Set(300, 0);
-            allCaughtList.HAlign = 0.01f;
-            allCaughtList.VAlign = 0.3f;
-            allCaughtList.SetScrollbar(new UIScrollbar());
-            panel.Append(allCaughtList);
+            void AddAList(float Halign, UIList UIlist)
+            {
+                UIlist.Width.Set(50, 0);
+                UIlist.Height.Set(320, 0);
+                UIlist.HAlign = Halign;
+                UIlist.VAlign = 0.8f;
+                UIlist.SetScrollbar(new UIScrollbar());
+                panel.Append(UIlist);
+            }
 
-            lavaList = new();
-            lavaList.Width.Set(50, 0);
-            lavaList.Height.Set(300, 0);
-            lavaList.HAlign = 0.08f;
-            lavaList.VAlign = 0.3f;
-            lavaList.SetScrollbar(new UIScrollbar());
-            panel.Append(lavaList);
+            AddAList(0.02f, AllCaughtList = new());
+            AddAList(0.085f, SpaceCatches = new());
+            AddAList(0.15f, ForestCatches = new());
+            AddAList(0.215f, UndergroundCatches = new());
+            AddAList(0.28f, SnowCatches = new());
+            AddAList(0.345f, DesertCatches = new());
+            AddAList(0.41f, CorruptionCatches = new());
+            AddAList(0.475f, CrimsonCatches = new());
+            AddAList(0.54f, JungleCatches = new());
+            AddAList(0.605f, DungeonCatches = new());
+            AddAList(0.67f, OceanCatches = new());
+            AddAList(0.735f, HallowCatches = new());
+            AddAList(0.80f, LavaCatches = new());
+            AddAList(0.865f, OreCatches = new());
+            AddAList(0.92f, GoldCritters = new());
+            AddAList(0.985f, AllPossibleCatches = new());
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -385,16 +418,42 @@ namespace Ichthyology.UI
             List<int> currentDrops = Main.LocalPlayer.IchthyologyBestiary().CaughtFishingDrops;
             if (currentState == CurrentUIState.CatchBestiary)
             {
-                allCaughtList.Clear();
+                void ShowTheList(UIList uiList, int[] itemIDs)
+                {
+                    uiList.Clear();
+                    foreach (var item in itemIDs)
+                    {
+                        uiList.Add(new UIItemIcon(ContentSamples.ItemsByType[item], !currentDrops.Contains(item)));
+                    }
+                }
+
+                AllCaughtList.Clear();
                 foreach (var item in currentDrops)
                 {
-                    allCaughtList.Add(new UIItemIcon(ContentSamples.ItemsByType[item], false));
+                    AllCaughtList.Add(new UIItemIcon(ContentSamples.ItemsByType[item], false));
                 }
-                lavaList.Clear();
-                foreach (var item in CatchItemIDSets.CrimsonCatches)
+
+                ShowTheList(SpaceCatches, CatchItemIDSets.SpaceCatches);
+                ShowTheList(ForestCatches, CatchItemIDSets.ForestCatches);
+                ShowTheList(UndergroundCatches, [.. CatchItemIDSets.UndergroundCatches, .. CatchItemIDSets.CavernCatches]);
+                ShowTheList(SnowCatches, [.. CatchItemIDSets.SnowCatches, .. CatchItemIDSets.IceCatches]);
+                ShowTheList(DesertCatches, [.. CatchItemIDSets.DesertCatches, .. CatchItemIDSets.UndergroundDesertCatches]);
+                ShowTheList(CorruptionCatches, [.. CatchItemIDSets.CorruptionCatches, .. CatchItemIDSets.UndergroundCorruptionCatches]);
+                ShowTheList(CrimsonCatches, [.. CatchItemIDSets.CrimsonCatches, .. CatchItemIDSets.UndergroundCrimsonCatches]);
+                ShowTheList(JungleCatches, [.. CatchItemIDSets.JungleCatches, .. CatchItemIDSets.UndergroundJungleCatces, .. CatchItemIDSets.HoneyCatches]);
+                ShowTheList(DungeonCatches, CatchItemIDSets.DungeonCatches);
+                ShowTheList(OceanCatches, CatchItemIDSets.OceanCatches);
+                ShowTheList(HallowCatches, CatchItemIDSets.HallowCatches);
+                ShowTheList(LavaCatches, CatchItemIDSets.LavaCatches);
+                ShowTheList(OreCatches, CatchItemIDSets.OreCatches);
+                ShowTheList(GoldCritters, CatchItemIDSets.GoldCritters);
+
+                AllPossibleCatches.Clear();
+                foreach (var item in CatchItemIDSets.AllPossibleCatches)
                 {
-                    lavaList.Add(new UIItemIcon(ContentSamples.ItemsByType[item], !currentDrops.Contains(item)));
+                    AllPossibleCatches.Add(new UIItemIcon(ContentSamples.ItemsByType[item], !currentDrops.Contains(item)));
                 }
+
                 base.Draw(spriteBatch);
             }
         }
