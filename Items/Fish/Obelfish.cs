@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Ichthyology.NPCs
+namespace Ichthyology.Items.Fish
 {
-    public class Puffer : ModItem
+    public class Obelfish : ModItem
     {
         public override void SetDefaults()
         {
