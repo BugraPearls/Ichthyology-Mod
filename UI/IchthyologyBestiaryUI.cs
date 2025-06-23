@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Initializers;
@@ -380,7 +382,7 @@ namespace Ichthyology.UI
         {
             ClickPreventedPanel panel = new();
             panel.Width.Set(950, 0);
-            panel.Height.Set(400, 0);
+            panel.Height.Set(420, 0);
             panel.HAlign = 0.5f;
             panel.VAlign = 0.5f;
             Append(panel);
@@ -411,6 +413,34 @@ namespace Ichthyology.UI
             AddAList(0.865f, OreCatches = new());
             AddAList(0.92f, GoldCritters = new());
             AddAList(0.985f, AllPossibleCatches = new());
+
+            void AddAIcon(float Halign, string Name)
+            {
+                UIImage icon = new(ModContent.Request<Texture2D>("Ichthyology/UI/Icons/Bestiary_"+Name));
+                icon.Width.Set(30, 0);
+                icon.Height.Set(30, 0);
+                icon.HAlign = Halign;
+                icon.VAlign = 0.02f;
+
+                panel.Append(icon);
+            }
+
+            AddAIcon(0.02f, "Item_Spawn");
+            AddAIcon(0.085f, "Sky");
+            AddAIcon(0.15f, "Surface");
+            AddAIcon(0.215f, "Caverns");
+            AddAIcon(0.28f, "Snow");
+            AddAIcon(0.345f, "Desert");
+            AddAIcon(0.41f, "The_Corruption");
+            AddAIcon(0.475f, "The_Crimson");
+            AddAIcon(0.54f, "The_Jungle");
+            AddAIcon(0.605f, "The_Dungeon");
+            AddAIcon(0.67f, "Ocean");
+            AddAIcon(0.735f, "The_Hallow");
+            AddAIcon(0.80f, "The_Underworld");
+            AddAIcon(0.865f, "Ore");
+            AddAIcon(0.92f, "Golden");
+            AddAIcon(0.985f, "Reach_Hardmode");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -501,7 +531,7 @@ namespace Ichthyology.UI
             }
             if (currentState == CurrentUIState.TurnedOff && Main.playerInventory)
             { 
-                _ButtonToShowUI?.Update(gameTime); 
+                _ButtonToShowUI?.Update(gameTime);
             }
             if (currentState == CurrentUIState.CatchBestiary)
             {
