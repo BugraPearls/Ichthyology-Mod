@@ -16,6 +16,7 @@ namespace Ichthyology.Items.Fish
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.Bass);
+            Item.rare = ItemRarityID.Blue;
         }
     }
 }

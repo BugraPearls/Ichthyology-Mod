@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ichthyology.Items.Baits;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -20,6 +21,16 @@ namespace Ichthyology.Items.Tools
 
             Item.fishingPole = 30;
             Item.shoot = ModContent.ProjectileType<Projectiles.SlimeBobber>();
+            Item.rare = ItemRarityID.Green;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.BloodFishingRod)
+                .AddIngredient(ModContent.ItemType<SlimyBait>(), 20)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

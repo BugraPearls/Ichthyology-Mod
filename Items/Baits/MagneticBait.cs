@@ -18,6 +18,15 @@ namespace Ichthyology.Items.Baits
         {
             Item.CloneDefaults(ItemID.ApprenticeBait);
             Item.bait = magneticPower;
+            Item.rare = ItemRarityID.Green;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe(5)
+                .AddRecipeGroup(Ichthyology.Gold, 5)
+                .AddRecipeGroup(Ichthyology.Silver, 5)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }

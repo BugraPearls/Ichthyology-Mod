@@ -18,11 +18,21 @@ namespace Ichthyology.Items.Accessories
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.FishingBobber);
+            Item.rare = ItemRarityID.Green;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.IchthyologyPlayer().TwinHook = true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddRecipeGroup(Ichthyology.DemoniteBar, 5)
+                .AddRecipeGroup(Ichthyology.Gold, 5)
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
         }
     }
 }

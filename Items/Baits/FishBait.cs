@@ -18,6 +18,16 @@ namespace Ichthyology.Items.Baits
         {
             Item.CloneDefaults(ItemID.ApprenticeBait);
             Item.bait = fishBaitPower;
+            Item.rare = ItemRarityID.Green;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe(5)
+                .AddIngredient(ItemID.ApprenticeBait, 10)
+                .AddIngredient(ItemID.Bass, 5)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }
