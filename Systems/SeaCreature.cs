@@ -19,10 +19,6 @@ namespace Ichthyology.Systems
         public bool isASeaCreature = false;
         public int fisherWhoAmI = -1;
         public bool ranTheScBuffs = false;
-        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
-        {
-            return SeaCreatureIDSets.AllSC[entity.type];
-        }
         public void BuffSeaCreature(NPC entity)
         {
             if (ranTheScBuffs == false && SeaCreatureIDSets.BloodMoonSC[entity.type] == false) //SC's move 3x faster in liquids, immune to lava, and have 50% more stats. Excludes Blood Moon SC enemies.
