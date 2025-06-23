@@ -28,7 +28,7 @@ namespace Ichthyology.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup(Ichthyology.Gold, 12)
+                .AddRecipeGroup(IchthyologyModSystem.Gold, 12)
                 .AddIngredient(ItemID.ApprenticeBait, 10)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();

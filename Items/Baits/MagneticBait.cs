@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ichthyology.Systems;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -23,8 +24,8 @@ namespace Ichthyology.Items.Baits
         public override void AddRecipes()
         {
             CreateRecipe(5)
-                .AddRecipeGroup(Ichthyology.Gold, 5)
-                .AddRecipeGroup(Ichthyology.Silver, 5)
+                .AddRecipeGroup(IchthyologyModSystem.Gold, 5)
+                .AddRecipeGroup(IchthyologyModSystem.Silver, 5)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

@@ -34,7 +34,7 @@ namespace Ichthyology.Items.Armor
         {
             CreateRecipe()
                 .AddIngredient(ItemID.AnglerVest)
-                .AddRecipeGroup(Ichthyology.Gold, 10)
+                .AddRecipeGroup(IchthyologyModSystem.Gold, 10)
                 .AddIngredient(ModContent.ItemType<Puffer>(), 5)
                 .AddTile(TileID.Anvils)
                 .Register();
