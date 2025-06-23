@@ -73,7 +73,15 @@ Mods: {
 			Armor: {
 				DivingHelmet: {
 					DisplayName: Diving Helmet
-					Tooltip: Increases breath timer, Sea Creature chance and damage to Sea Creatures
+					Tooltip: Increases breath timer and Sea Creature Chance
+				}
+				DivingChestplate: {
+					DisplayName: Diving Chestplate
+					Tooltip: Reduces damage taken by Sea Creatures and Increases Fishing Power
+				}
+				DivingLeggings: {
+					DisplayName: Diving Leggings
+					Tooltip: Increases damage done to Sea Creatures and Double Hook Chance
 				}
 			}
 		}
