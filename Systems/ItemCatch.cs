@@ -137,7 +137,7 @@ namespace Ichthyology.Systems
                     }
                 }
 
-                if (player.IchthyologyPlayer().MagnetHook)
+                if (player.IchthyologyPlayer().MagnetBait)
                 {
                     FishUtils.AddMultipleToList(UncommonItems, 
                         CatchItemIDSets.OreCatches);

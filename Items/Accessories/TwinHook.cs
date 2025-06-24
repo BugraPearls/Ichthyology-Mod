@@ -23,7 +23,7 @@ namespace Ichthyology.Items.Accessories
 
         public override void UpdateEquip(Player player)
         {
-            player.IchthyologyPlayer().TwinHook = true;
+            player.IchthyologyPlayer().doubleHookChance += 0.2f;
         }
 
         public override void AddRecipes()
