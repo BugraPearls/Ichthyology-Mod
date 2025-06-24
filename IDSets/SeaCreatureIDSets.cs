@@ -262,7 +262,7 @@ namespace Ichthyology.IDSets
             NPCID.RainbowSlime,
             NPCID.Gastropod);
 
-        public static bool[] AllSC = NPCID.Sets.Factory.CreateNamedSet("AllSeaCreatures").Description("Set of all Sea Creatures").RegisterBoolSet(false,
+        public static int[] AllSC = {
             //Lava SC
             NPCID.BlueArmoredBones,
             NPCID.BlueArmoredBonesMace,
@@ -454,6 +454,6 @@ namespace Ichthyology.IDSets
             NPCID.Pixie,
             NPCID.RainbowSlime,
             NPCID.Gastropod
-            );
+        };
     }
 }
