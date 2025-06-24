@@ -82,7 +82,7 @@ namespace Ichthyology.Systems
             scLootIncrease = 0;
             questFishCatchChance = 0.25f;
             costCapForStackRaise = 1000;
-            GoldenCage = false; 
+            GoldenCage = false;
             MagnetBait = false;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
@@ -199,7 +199,7 @@ namespace Ichthyology.Systems
                 double value = costCapForStackRaise - fish.value; //10 silver cap to possibly raise the stack.
                 if (value > 0)
                 {
-                    for (int i = 0; i < FishUtils.Randomizer((int)Math.Round(Math.Log(value * Main.rand.Next(100)) * 100)); i++) //Main.rand here makes it have some random element to it, and won't be as high due to logarithm.
+                    for (int i = 0; i < FishUtils.Randomizer((int)Math.Round(Math.Log(value * Main.rand.Next(100)) * 100) / 3); i++) //Main.rand here makes it have some random element to it, and won't be as high due to logarithm.
                     {
                         stackRaise++;
                     }
