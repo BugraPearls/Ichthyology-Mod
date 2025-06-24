@@ -18,7 +18,6 @@ namespace Ichthyology.Items.Tools
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodFishingPole);
-
             Item.fishingPole = 30;
             Item.shoot = ModContent.ProjectileType<Projectiles.SlimeBobber>();
             Item.rare = ItemRarityID.Green;

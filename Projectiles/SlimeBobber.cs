@@ -17,6 +17,7 @@ namespace Ichthyology.Projectiles
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.BobberWooden);
+            DrawOriginOffsetY = -8;
         }
     }
 }
