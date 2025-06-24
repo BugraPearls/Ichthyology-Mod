@@ -248,7 +248,6 @@ namespace Ichthyology.Systems
             {
                 rewardItems.Add(new Item(ModContent.ItemType<IchthyologicalSonar>()));
             }
-            Main.NewText(rareMultiplier);
         }
         public override void PostUpdateMiscEffects()
         {
