@@ -1,3 +1,28 @@
-Currently a WIP for tModJam No. 0
+Ichthyology Mod:
 
-Mod does lots of stuff related to fishing. This is a placeholder to allow publishing for the timebeing.
+Complete Revamp of the Terraria Fishing System!
+
+This mod adds:
+
+Sea Creatures
+	- Enemies are able to be fished up, are stronger, and give more rewards!
+
+Fishing Drops:
+	- A custom Fishing Loot Table, including custom fish!
+
+Accessories:
+	- Golden Cage: Gives a chance to catch Golden Critters!
+	- Twin Hook: Gives a chance to cast multiple hooks!
+	- Ichthyological Sonar: A display accessory that shows Sea Creature Chance! (This item is now required in Fish Finder and will display SCC in all its upgrades too)
+
+New Fishing Rods:
+	- Slimy Rod: This rod has a higher chance to hook up Sea Creatures
+	- Chum Caster: Now also has a higher chance on Sea Creatures!
+
+New Armor Set:
+	- Divers Armor: Increases Fishing power, Sea Creature Chance and much more!
+
+New Baits:
+	- Magnetic Bait: Allows for ores to be caught!
+	- Slimy Bait: Increases Sea Creature Chance!
+	- Fish Bait: Stops Sea Creatures from being reeled in!
