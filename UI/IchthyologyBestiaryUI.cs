@@ -139,7 +139,7 @@ namespace Ichthyology.UI
 
         private void SeaCreatureButtonClick(UIMouseEvent evt, UIElement listeningElement)
         {
-            Main.NewText("hi");
+            currentState = CurrentUIState.SCBestiary;
         }
 
         private static void FishCatchesButtonClick(UIMouseEvent evt, UIElement listeningElement)
@@ -416,7 +416,7 @@ namespace Ichthyology.UI
 
             void AddAIcon(float Halign, string Name)
             {
-                UIImage icon = new(ModContent.Request<Texture2D>("Ichthyology/UI/Icons/Bestiary_"+Name));
+                UIImage icon = new(ModContent.Request<Texture2D>("Ichthyology/UI/Icons/Bestiary_" + Name));
                 icon.Width.Set(30, 0);
                 icon.Height.Set(30, 0);
                 icon.HAlign = Halign;
@@ -489,6 +489,70 @@ namespace Ichthyology.UI
         }
     }
 
+    public class IchthyologySCUniques : UIState
+    {
+        public UIList CompleteKills;
+        public UIList IncompleteKills;
+        public override void OnInitialize()
+        {
+            ClickPreventedPanel panel = new();
+            panel.Width.Set(400, 0);
+            panel.Height.Set(650, 0);
+            panel.HAlign = 0.5f;
+            panel.VAlign = 0.5f;
+            Append(panel);
+
+            UIText txt1 = new("Current Kills", 0.9f);
+            txt1.HAlign = 0.05f;
+            txt1.VAlign = 0.02f;
+            panel.Append(txt1);
+
+            UIText txt2 = new("Missing Kills", 0.9f);
+            txt2.HAlign = 0.65f;
+            txt2.VAlign = 0.02f;
+            panel.Append(txt2);
+
+            CompleteKills = new();
+            CompleteKills.Width.Set(170, 0);
+            CompleteKills.Height.Set(550, 0);
+            CompleteKills.HAlign = 0.05f;
+            CompleteKills.VAlign = 0.6f;
+            CompleteKills.SetScrollbar(new UIScrollbar());
+            panel.Append(CompleteKills);
+
+            IncompleteKills = new();
+            IncompleteKills.Width.Set(170, 0);
+            IncompleteKills.Height.Set(550, 0);
+            IncompleteKills.HAlign = 0.8f;
+            IncompleteKills.VAlign = 0.6f;
+            IncompleteKills.SetScrollbar(new UIScrollbar());
+            panel.Append(IncompleteKills);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            IchthyologyBestiary best = Main.LocalPlayer.IchthyologyBestiary();
+            if (currentState == CurrentUIState.SCBestiary)
+            {
+                CompleteKills.Clear();
+                foreach (var item in best.KilledSeaCreatures)
+                {
+                    CompleteKills.Add(new UIText(ContentSamples.NpcsByNetId[item].TypeName, 0.8f));
+                }
+
+                IncompleteKills.Clear();
+                foreach (var item in SeaCreatureIDSets.AllSC)
+                {
+                    if (best.KilledSeaCreatures.Contains(item) == false)
+                    {
+                        IncompleteKills.Add(new UIText(ContentSamples.NpcsByNetId[item].TypeName, 0.8f));
+                    }
+                }
+                base.Draw(spriteBatch);
+            }
+        }
+    }
+
     [Autoload(Side = ModSide.Client)]
     public class IchthyologyBestiaryDisplaySystem : ModSystem
     {
@@ -496,10 +560,12 @@ namespace Ichthyology.UI
         internal IchthyologyBestiaryShowButton ButtonToShowUI;
         internal IchthyologyStatSummary UIStatPanel;
         internal IchthyologyItemUniques UIItems;
+        internal IchthyologySCUniques UISC;
         private UserInterface _UIPanel;
         private UserInterface _ButtonToShowUI;
         private UserInterface _UIStatPanel;
         private UserInterface _UIItems;
+        private UserInterface _UISC;
         public override void Load()
         {
             UIPanel = new IchthyologyBestiaryUI();
@@ -521,6 +587,11 @@ namespace Ichthyology.UI
             UIItems.Activate();
             _UIItems = new UserInterface();
             _UIItems.SetState(UIItems);
+
+            UISC = new IchthyologySCUniques();
+            UISC.Activate();
+            _UISC = new UserInterface();
+            _UISC.SetState(UISC);
         }
         public override void UpdateUI(GameTime gameTime)
         {
@@ -530,12 +601,16 @@ namespace Ichthyology.UI
                 _UIStatPanel?.Update(gameTime);
             }
             if (Main.playerInventory)
-            { 
+            {
                 _ButtonToShowUI?.Update(gameTime);
             }
             if (currentState == CurrentUIState.CatchBestiary)
             {
                 _UIItems?.Update(gameTime);
+            }
+            if (currentState == CurrentUIState.SCBestiary)
+            {
+                _UISC?.Update(gameTime);
             }
         }
 
@@ -552,6 +627,7 @@ namespace Ichthyology.UI
                         _ButtonToShowUI.Draw(Main.spriteBatch, new GameTime());
                         _UIStatPanel.Draw(Main.spriteBatch, new GameTime());
                         _UIItems.Draw(Main.spriteBatch, new GameTime());
+                        _UISC.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)

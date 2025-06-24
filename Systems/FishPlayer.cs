@@ -266,7 +266,7 @@ namespace Ichthyology.Systems
             }
             if (Player.GetFishingConditions().Bait.type == ModContent.ItemType<SlimyBait>())
             {
-                scChance += 15;
+                scChance += 0.15f;
             }
             if (Player.GetFishingConditions().Bait.type == ModContent.ItemType<FishBait>())
             {
