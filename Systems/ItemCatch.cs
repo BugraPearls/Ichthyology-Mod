@@ -12,6 +12,8 @@ using Terraria.Utilities;
 using Ichthyology.Systems;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Ichthyology.IDSets;
+using Terraria.ModLoader;
+using Ichthyology.Items.Fish;
 
 namespace Ichthyology.Systems
 {
@@ -188,6 +190,7 @@ namespace Ichthyology.Systems
                         ItemID.GemTreeRubySeed,
                         ItemID.GemTreeSapphireSeed,
                         ItemID.GemTreeTopazSeed);
+                    RareItems.Add(ModContent.ItemType<Obelfish>());
                     FishUtils.AddMultipleToList(RareItems,
                         ItemID.FairyCritterBlue,
                         ItemID.FairyCritterGreen,
@@ -313,6 +316,7 @@ namespace Ichthyology.Systems
                             ItemID.RottenChunk);
                         UncommonItems.Add(ItemID.Ebonkoi);
                         RareItems.Add(ItemID.UnholyWater);
+                        RareItems.Add(ModContent.ItemType<WitheredFish>());
                         RareItems.Add(ItemID.PurpleClubberfish);
                         FishUtils.AddMultipleToList(LegendaryItems,
                             ItemID.AncientShadowGreaves,
@@ -352,6 +356,7 @@ namespace Ichthyology.Systems
                         FishUtils.AddMultipleToList(CommonItems,
                             ItemID.Vertebrae,
                             ItemID.ViciousMushroom);
+                        RareItems.Add(ModContent.ItemType<WitheredFish>());
                         RareItems.Add(ItemID.BloodWater);
                         if (hardMode)
                         {
@@ -437,10 +442,14 @@ namespace Ichthyology.Systems
                             ItemID.AlchemyTable);
                     }
                 }
-
+                
                 //Ocean Items
-                else if ((Main.remixWorld && attempt.heightLevel == 1 && (double)attempt.Y >= Main.rockLayer && Main.rand.Next(3) == 0) || (attempt.heightLevel <= 1 && (attempt.X < 380 || attempt.X > Main.maxTilesX - 380) && attempt.waterTilesCount > 1000))
+                else if ((Main.remixWorld && attempt.heightLevel == 1 && (double)attempt.Y >= Main.rockLayer && Main.rand.NextBool(3)) || (attempt.heightLevel <= 1 && (attempt.X < 380 || attempt.X > Main.maxTilesX - 380) && attempt.waterTilesCount > 1000))
                 {
+                    if (Main.rand.NextBool(12) && attempt.rare)
+                    {
+                        return ModContent.ItemType<Puffer>();
+                    }
                     FishUtils.AddMultipleToList(CommonItems,
                         ItemID.OldShoe,
                         ItemID.JojaCola,
