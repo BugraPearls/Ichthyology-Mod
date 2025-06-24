@@ -26,3 +26,10 @@ New Baits:
 	- Magnetic Bait: Allows for ores to be caught!
 	- Slimy Bait: Increases Sea Creature Chance!
 	- Fish Bait: Stops Sea Creatures from being reeled in!
+
+Stat Improvement System:
+	- Unique Sea Creature kills give permanent stat boosts and have Milestones!
+	- Angler Quests give permanent stat boosts and have Milestones!
+	- These Milestones give larger boosts than the normal ones.
+
+(This mod was made for tModJam 0!)
