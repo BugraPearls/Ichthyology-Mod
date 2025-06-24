@@ -22,6 +22,7 @@ namespace Ichthyology.Items.Tools
             Item.fishingPole = 30;
             Item.shoot = ModContent.ProjectileType<Projectiles.SlimeBobber>();
             Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(gold: 10);
         }
 
         public override void AddRecipes()

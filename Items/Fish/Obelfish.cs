@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -17,6 +18,7 @@ namespace Ichthyology.Items.Fish
         {
             Item.CloneDefaults(ItemID.Bass);
             Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(silver: 50);
         }
     }
 }
