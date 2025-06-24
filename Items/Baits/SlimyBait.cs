@@ -21,6 +21,7 @@ namespace Ichthyology.Items.Baits
             Item.CloneDefaults(ItemID.ApprenticeBait);
             Item.bait = creatureBaitPower;
             Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(silver: 10);
         }
 
         public override void AddRecipes()

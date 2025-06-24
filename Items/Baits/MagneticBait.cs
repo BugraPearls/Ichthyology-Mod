@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ichthyology.Systems;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -20,6 +21,7 @@ namespace Ichthyology.Items.Baits
             Item.CloneDefaults(ItemID.ApprenticeBait);
             Item.bait = magneticPower;
             Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(silver: 10);
         }
         public override void AddRecipes()
         {

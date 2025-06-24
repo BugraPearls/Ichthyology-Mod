@@ -17,11 +17,12 @@ namespace Ichthyology.Items.Accessories
         public override LocalizedText DisplayName => Language.GetText("Mods.Ichthyology.Items.Accessories.GoldenCage.DisplayName");
         public override void SetDefaults()
         {
+            Item.DefaultToAccessory();
             Item.width = 32;
             Item.height = 32;
             Item.maxStack = 1;
             Item.accessory = true;
-            Item.value = Item.sellPrice(silver: 50);
+            Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Orange;
         }
 

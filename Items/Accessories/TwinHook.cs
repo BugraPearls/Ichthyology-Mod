@@ -18,6 +18,7 @@ namespace Ichthyology.Items.Accessories
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.FishingBobber);
+            Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Green;
         }
 
