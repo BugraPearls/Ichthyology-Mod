@@ -1,8 +1,12 @@
 ﻿using Ichthyology.Items;
+using Ichthyology.Items.Accessories;
+using Ichthyology.Items.Baits;
+using Ichthyology.Items.Tools;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
@@ -67,8 +71,7 @@ namespace Ichthyology.Systems
         /// </summary>
         public bool displaySCC;
         public bool GoldenCage = false;
-        public bool TwinHook = false;
-        public bool MagnetHook = false;
+        public bool MagnetBait = false;
         public override void ResetEffects()
         {
             scChance = 0.1f;
@@ -80,8 +83,7 @@ namespace Ichthyology.Systems
             questFishCatchChance = 0.25f;
             costCapForStackRaise = 1000;
             GoldenCage = false; 
-            TwinHook = false;
-            MagnetHook = false;
+            MagnetBait = false;
         }
         public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
         {
@@ -240,11 +242,27 @@ namespace Ichthyology.Systems
             }
             return null;
         }
+        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
+        {
+            if (Main.rand.NextBool(5) && !Player.HasItem(ModContent.ItemType<IchthyologicalSonar>()))
+            {
+                rewardItems.Add(new Item(ModContent.ItemType<IchthyologicalSonar>()));
+            }
+            Main.NewText(rareMultiplier);
+        }
         public override void PostUpdateMiscEffects()
         {
-            if (Player.GetFishingConditions().PoleItemType == ItemID.BloodFishingRod)
+            if (Player.GetFishingConditions().PoleItemType == ModContent.ItemType<SlimyRod>())
             {
                 scChance += 0.3f;
+            }
+            if (Player.GetFishingConditions().PoleItemType == ItemID.BloodFishingRod)
+            {
+                scChance += 0.2f;
+            }
+            if (Player.GetFishingConditions().Bait == new Item(ModContent.ItemType<MagneticBait>()))
+            {
+                MagnetBait = true;
             }
             if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.CellPhone))
             {
