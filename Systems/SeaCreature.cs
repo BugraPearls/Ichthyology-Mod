@@ -62,7 +62,7 @@ namespace Ichthyology.Systems
         private static ItemDropAttemptResult IncreasedSCDrops(On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
         {
             ItemDropAttemptResult tempResult;
-            if (rule is CommonDrop drop && info.npc.IchthyologySeaCreature(out SeaCreature sc) && sc.isASeaCreature && SeaCreatureIDSets.BloodMoonSC[info.npc.type] == false) //EXCLUDES blood moon enemies.
+            if (info.item <= 0 && rule is CommonDrop drop && info.npc.IchthyologySeaCreature(out SeaCreature sc) && sc.isASeaCreature && SeaCreatureIDSets.BloodMoonSC[info.npc.type] == false) //EXCLUDES blood moon enemies.
             {
                 float baseIncrease = Math.Max(3f + info.player.IchthyologyPlayer().scLootIncrease, 1);
                 float currentChance = (float)Math.Max(drop.chanceNumerator * baseIncrease, 1) / Math.Max(drop.chanceDenominator, 1);
