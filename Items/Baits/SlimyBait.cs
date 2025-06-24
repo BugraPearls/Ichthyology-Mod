@@ -26,8 +26,8 @@ namespace Ichthyology.Items.Baits
         public override void AddRecipes()
         {
             CreateRecipe(5)
-                .AddIngredient(ItemID.ApprenticeBait, 10)
-                .AddIngredient(ItemID.Gel, 10)
+                .AddIngredient(ItemID.ApprenticeBait, 5)
+                .AddIngredient(ItemID.Gel, 20)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

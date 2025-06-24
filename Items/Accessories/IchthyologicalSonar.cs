@@ -25,9 +25,5 @@ namespace Ichthyology.Items.Accessories
         {
             player.IchthyologyPlayer().displaySCC = true;
         }
-        public override void UpdateEquip(Player player)
-        {
-            player.IchthyologyPlayer().scChance += 0.95f;
-        }
     }
 }
