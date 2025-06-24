@@ -260,19 +260,19 @@ namespace Ichthyology.Systems
             {
                 scChance += 0.2f;
             }
-            if (Player.GetFishingConditions().Bait == new Item(ModContent.ItemType<MagneticBait>()))
+            if (Player.GetFishingConditions().Bait.type == ModContent.ItemType<MagneticBait>())
             {
                 MagnetBait = true;
             }
-            if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.CellPhone))
+            if (Player.GetFishingConditions().Bait.type == ModContent.ItemType<SlimyBait>())
             {
-                Player.IchthyologyPlayer().displaySCC = true;
+                scChance += 15;
             }
-            else if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.PDA))
+            if (Player.GetFishingConditions().Bait.type == ModContent.ItemType<FishBait>())
             {
-                Player.IchthyologyPlayer().displaySCC = true;
+                scChance = 0;
             }
-            else if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.FishFinder))
+            if (Player.HasItemInInventoryOrOpenVoidBag(ItemID.CellPhone) || Player.HasItemInInventoryOrOpenVoidBag(ItemID.PDA) || Player.HasItemInInventoryOrOpenVoidBag(ItemID.FishFinder) || Player.HasItemInInventoryOrOpenVoidBag(ItemID.Shellphone))
             {
                 Player.IchthyologyPlayer().displaySCC = true;
             }

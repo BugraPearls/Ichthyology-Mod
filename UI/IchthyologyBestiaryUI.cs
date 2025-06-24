@@ -529,7 +529,7 @@ namespace Ichthyology.UI
                 _UIPanel?.Update(gameTime);
                 _UIStatPanel?.Update(gameTime);
             }
-            if (currentState == CurrentUIState.TurnedOff && Main.playerInventory)
+            if (Main.playerInventory)
             { 
                 _ButtonToShowUI?.Update(gameTime);
             }
